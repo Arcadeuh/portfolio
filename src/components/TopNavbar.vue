@@ -1,6 +1,8 @@
 <template>
   <div class="top-navbar">
-    
+    <div id="my-name">
+      <h1 class="debug-blackbox">Arcadeuh</h1>
+    </div>
   </div>
 </template>
 
@@ -8,7 +10,7 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'HelloWorld',
+  name: 'TopNavbar',
   props: {
     msg: String,
   },
@@ -17,18 +19,19 @@ export default defineComponent({
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-h3 {
-  margin: 40px 0 0;
+@use '@/assets/colors.scss' as colors;
+
+.top-navbar{
+  background-color: colors.$primary;
+  height: 75px;
+  width: 100%;
+  display: flex;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
+#my-name{
+  font-family: "Bungee";
 }
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
+h1{
+  margin: 0px;
+  height: 100%;
 }
 </style>

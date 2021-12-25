@@ -1,10 +1,24 @@
 <template>
+  <TopNavbar/>
   <div id="nav">
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link>
   </div>
   <router-view/>
 </template>
+
+<script lang="ts">
+import { defineComponent } from 'vue'
+import TopNavbar from '@/components/TopNavbar.vue'
+
+export default defineComponent({
+  components: {
+    TopNavbar
+  }
+})
+</script>
+
+
 
 <style lang="scss">
 
@@ -22,10 +36,14 @@
   font-family: 'ABeeZee';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+  //text-align: center;
+  //color: #2c3e50;
 }
 
+.debug-blackbox{
+  
+  background-color: rgba(0, 0, 0, 0.2);
+}
 
 #nav {
   padding: 30px;
