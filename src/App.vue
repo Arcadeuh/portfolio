@@ -7,13 +7,25 @@
 </template>
 
 <style lang="scss">
+
+@font-face {
+    font-family: 'ABeeZee';
+    src: url(assets/fonts/ABeeZee-Regular.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'Bungee';
+    src: url(assets/fonts/Bungee-Regular.ttf) format('truetype');
+}
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'ABeeZee';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
 }
+
 
 #nav {
   padding: 30px;
