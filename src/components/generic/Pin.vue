@@ -15,10 +15,8 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
-
 img{
     background-color: white;
     cursor: pointer;
 }
-
 </style>

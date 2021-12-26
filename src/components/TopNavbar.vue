@@ -6,23 +6,52 @@
       </div>
       <h1>Arcadeuh</h1>
     </div>
+
+    <div class="Navbar">
+      <Navbar :navItems="navItems"/>
+    </div>
+
+    <div id="my-name">
+      <div class="Pin">
+        <Pin filename="pp.png" :callback="print"/>
+      </div>
+      <h1>Arcadeuh</h1>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
 import Pin from '@/components/generic/Pin.vue';
+import Navbar from '@/components/generic/Navbar.vue';
+import { defineComponent } from 'vue';
+import { NavItem } from '@/elements/objects/NavItem';
 
 export default defineComponent({
   name: 'TopNavbar',
+
   components: {
-    Pin
+    Pin,
+    Navbar,
   },
+
+  data(){
+    return {
+      navItems: [
+        new NavItem("Jeux", this.print),
+        new NavItem("A propos de moi", this.printTwo)
+      ],
+    }
+  },
+
   methods: {
     print(){
       console.log("THERE");
+    },
+    printTwo(){
+      console.log("2");
     }
   }
+
 });
 </script>
 
@@ -35,6 +64,7 @@ export default defineComponent({
   height: 75px;
   width: 100%;
   display: flex;
+  justify-content: space-between;
 }
 #my-name{
   font-family: "Bungee";
@@ -44,13 +74,17 @@ export default defineComponent({
   & > * {
     margin: 5px;
   }
-}
-h1{
-  height: 100%;
-  color: colors.$brightColor;
+
+  h1{
+    height: 100%;
+    color: colors.$brightColor;
+  }
 }
 .Pin{
   width: 50px;
   height: 50px;
+}
+.Navbar{
+  width: 15%;
 }
 </style>
