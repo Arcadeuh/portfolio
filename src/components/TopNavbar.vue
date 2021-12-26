@@ -1,25 +1,29 @@
 <template>
   <div class="top-navbar">
     <div id="my-name">
-      <h1 class="debug-blackbox">Arcadeuh</h1>
+      <div class="Pin">
+        <Pin filename="pp.png"/>
+      </div>
+      <h1>Arcadeuh</h1>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import Pin from '@/components/generic/Pin.vue';
 
 export default defineComponent({
   name: 'TopNavbar',
-  props: {
-    msg: String,
-  },
+  components: {
+    Pin
+  }
 });
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-@use '@/assets/colors.scss' as colors;
+@use '@/assets/styles/colors.scss' as colors;
 
 .top-navbar{
   background-color: colors.$primary;
@@ -29,9 +33,19 @@ export default defineComponent({
 }
 #my-name{
   font-family: "Bungee";
+  display: flex;
+  align-items: center;
+  margin-left: 5px;
+  & > * {
+    margin: 5px;
+  }
 }
 h1{
-  margin: 0px;
   height: 100%;
+  color: colors.$brightColor;
+}
+.Pin{
+  width: 50px;
+  height: 50px;
 }
 </style>

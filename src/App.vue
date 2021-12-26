@@ -21,6 +21,7 @@ export default defineComponent({
 
 
 <style lang="scss">
+@use '@/assets/styles/generic.scss' as generic;
 
 @font-face {
     font-family: 'ABeeZee';
@@ -40,11 +41,6 @@ export default defineComponent({
   //color: #2c3e50;
 }
 
-.debug-blackbox{
-  
-  background-color: rgba(0, 0, 0, 0.2);
-}
-
 #nav {
   padding: 30px;
 
@@ -57,4 +53,8 @@ export default defineComponent({
     }
   }
 }
+
+* {
+      margin: 0;
+  }
 </style>
