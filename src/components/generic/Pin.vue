@@ -1,5 +1,5 @@
 <template>
-    <img class="generic circle" id="profile-picture" :src="require(`@/assets/pictures/${filename}`)">
+    <img v-on:click="callback" class="circle" id="profile-picture" :src="require(`@/assets/pictures/${filename}`)">
 </template>
 
 <script lang="ts">
@@ -7,7 +7,10 @@ import { defineComponent } from 'vue'
 
 export default defineComponent({
     name: 'Pin',
-    props: ['filename'],
+    props: {
+        filename: String,
+        callback: Function
+    },
 })
 </script>
 
@@ -15,6 +18,7 @@ export default defineComponent({
 
 img{
     background-color: white;
+    cursor: pointer;
 }
 
 </style>

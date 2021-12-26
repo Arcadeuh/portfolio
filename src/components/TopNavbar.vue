@@ -2,7 +2,7 @@
   <div class="top-navbar">
     <div id="my-name">
       <div class="Pin">
-        <Pin filename="pp.png"/>
+        <Pin filename="pp.png" :callback="print"/>
       </div>
       <h1>Arcadeuh</h1>
     </div>
@@ -17,6 +17,11 @@ export default defineComponent({
   name: 'TopNavbar',
   components: {
     Pin
+  },
+  methods: {
+    print(){
+      console.log("THERE");
+    }
   }
 });
 </script>
