@@ -22,6 +22,7 @@ export default defineComponent({
 
 <style lang="scss">
 @use '@/assets/styles/generic.scss' as generic;
+@use '@/assets/styles/colors.scss' as colors;
 
 @font-face {
     font-family: 'ABeeZee';
@@ -39,6 +40,7 @@ export default defineComponent({
   -moz-osx-font-smoothing: grayscale;
   //text-align: center;
   //color: #2c3e50;
+  background-color: colors.$backgroundColor;
 }
 
 #nav {

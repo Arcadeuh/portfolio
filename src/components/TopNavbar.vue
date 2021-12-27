@@ -37,8 +37,8 @@ export default defineComponent({
   data(){
     return {
       navItems: [
-        new NavItem("Jeux", this.print),
-        new NavItem("A propos de moi", this.printTwo)
+        new NavItem("GameDesign", this.print),
+        new NavItem("Programmation", this.printTwo)
       ],
     }
   },
@@ -85,6 +85,6 @@ export default defineComponent({
   height: 50px;
 }
 .Navbar{
-  width: 15%;
+  width: 20%;
 }
 </style>
