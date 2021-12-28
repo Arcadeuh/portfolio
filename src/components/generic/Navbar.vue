@@ -1,15 +1,19 @@
 <template>
     <div class="list">
-        <div id="first-element">&#160;</div>
-        <div class="list-item" v-for="navItem in navItems" :key="navItem" 
-            v-on:click="navItem.callback" 
-            @mouseenter="setMouseOver(navItem, true)" 
-            @mouseleave="setMouseOver(navItem, false)"
-            :class="{ 'selected': navItem.mouseOver }"
-        >
-            {{navItem.name}}
+        <!--div id="first-element">&#160;</div-->
+        <div style="width: 100%; height: 100%; display: flex; align-items: center;" v-for="(navItem, index) in navItems" :key="navItem">
+            <div v-if="index == 0" class="separator">&#160;</div>
+            <div class="list-item"  
+                v-on:click="navItem.callback" 
+                @mouseenter="setMouseOver(navItem, true)" 
+                @mouseleave="setMouseOver(navItem, false)"
+                :class="{ 'selected': navItem.mouseOver }"
+            >
+                {{navItem.name}}
+            </div>
+            <div class="separator">&#160;</div>
         </div>
-        <div id="last-element">&#160;</div>
+        
     </div>
 </template>
 
@@ -48,36 +52,28 @@ export default defineComponent({
     flex-wrap: nowrap;
     user-select:none;
 
-    #first-element{
-        border-color: colors.$brightColor;
-        border-width: 0px 2.5px 0px 0px; 
-        border-style: solid;
-        font-size: 90%;
-    }
-
     .list-item{
         cursor: pointer;
 
-        border-color: colors.$brightColor;
-        border-width: 0px 2.5px 0px 2.5px; 
-        border-style: solid;
-
         flex: 1;
-        white-space:nowrap;
+        //white-space:nowrap;
         text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         font-size: 90%;
         padding: 0px 5px 0px 5px;
+        height: 100%;
+    }
+
+    .separator{
+        background-color: colors.$brightColor;
+        width: 5px;
+        height: 50%;
     }
 
     .selected{
         background-color: colors.$secondary;
-    }
-
-    #last-element{
-        border-color: colors.$brightColor;
-        border-width: 0px 0px 0px 2.5px; 
-        border-style: solid;
-        font-size: 90%;
     }
 }
 </style>
