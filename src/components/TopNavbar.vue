@@ -71,6 +71,7 @@ export default defineComponent({
   display: flex;
   align-items: center;
   margin-left: 5px;
+  user-select:none;
   & > * {
     margin: 5px;
   }

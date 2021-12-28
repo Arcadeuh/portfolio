@@ -1,12 +1,19 @@
 <template>
     <div class="list">
         <div id="first-element">&#160;</div>
-        <div class="list-item" v-for="navItem in navItems" :key="navItem" v-on:click="navItem.callback">
+        <div class="list-item" v-for="navItem in navItems" :key="navItem" 
+            v-on:click="navItem.callback" 
+            @mouseenter="setMouseOver(navItem, true)" 
+            @mouseleave="setMouseOver(navItem, false)"
+            :class="{ 'selected': navItem.mouseOver }"
+        >
             {{navItem.name}}
         </div>
         <div id="last-element">&#160;</div>
     </div>
 </template>
+
+
 
 <script lang="ts">
 import { defineComponent } from 'vue'
@@ -14,9 +21,18 @@ import { NavItem } from '@/elements/objects/NavItem'
 
 export default defineComponent({
     name: 'Navbar',
-    props: ['navItems']
+    props: ['navItems'],
+
+    methods: {
+        setMouseOver(navItem: NavItem, value: boolean){
+            navItem.mouseOver = value;
+        },
+    }
+
 })
 </script>
+
+
 
 <style scoped lang="scss">
 @use '@/assets/styles/colors.scss' as colors;
@@ -30,6 +46,7 @@ export default defineComponent({
     height: 100%;
     color: colors.$brightColor;
     flex-wrap: nowrap;
+    user-select:none;
 
     #first-element{
         border-color: colors.$brightColor;
@@ -40,14 +57,20 @@ export default defineComponent({
 
     .list-item{
         cursor: pointer;
-        flex: 1;
+
         border-color: colors.$brightColor;
         border-width: 0px 2.5px 0px 2.5px; 
         border-style: solid;
+
+        flex: 1;
         white-space:nowrap;
         text-align: center;
         font-size: 90%;
         padding: 0px 5px 0px 5px;
+    }
+
+    .selected{
+        background-color: colors.$secondary;
     }
 
     #last-element{
