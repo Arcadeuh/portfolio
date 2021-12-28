@@ -2,9 +2,9 @@
   <div class="top-navbar">
     <div id="my-name">
       <div class="Pin">
-        <Pin filename="pp.png" :callback="print"/>
+        <Pin class="boxShadowDarkColor" filename="pp.png" :callback="print"/>
       </div>
-      <h1>Arcadeuh</h1>
+      <h1 class="textShadowDarkColor">Arcadeuh</h1>
     </div>
 
     <div class="Navbar">
@@ -13,16 +13,16 @@
 
     <div id="contacts">
       <div class="Pin">
-        <Pin filename="itch.png" :callback="print"/>
+        <Pin class="boxShadowDarkColor" filename="itch-2.png" :callback="print"/>
       </div>
       <div class="Pin">
-        <Pin filename="GitHub.png" :callback="print"/>
+        <Pin class="boxShadowDarkColor" filename="GitHub.png" :callback="print"/>
       </div>
       <div class="Pin">
-        <Pin filename="pp.png" :callback="print"/>
+        <Pin class="boxShadowDarkColor" filename="pp.png" :callback="print"/>
       </div>
       <div class="Pin">
-        <Pin filename="linkedin.png" :callback="print"/>
+        <Pin class="boxShadowDarkColor" filename="linkedin.png" :callback="print"/>
       </div>
     </div>
   </div>

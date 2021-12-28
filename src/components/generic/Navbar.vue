@@ -4,10 +4,10 @@
         <div style="width: 100%; height: 100%; display: flex; align-items: center;" v-for="(navItem, index) in navItems" :key="navItem">
             <div v-if="index == 0" class="separator">&#160;</div>
             <div class="list-item"  
-                v-on:click="navItem.callback" 
+                v-on:click="navItem.callback();setSelected(navItems, navItem);" 
                 @mouseenter="setMouseOver(navItem, true)" 
                 @mouseleave="setMouseOver(navItem, false)"
-                :class="{ 'selected': navItem.mouseOver }"
+                :class="{ 'backgroundSecondaryColor': (navItem.selected && !mouseOverIt) || navItem.mouseOver }"
             >
                 {{navItem.name}}
             </div>
@@ -27,10 +27,23 @@ export default defineComponent({
     name: 'Navbar',
     props: ['navItems'],
 
+    data(){
+        return {
+            mouseOverIt: false,
+        }
+    },
+
     methods: {
         setMouseOver(navItem: NavItem, value: boolean){
             navItem.mouseOver = value;
+            this.mouseOverIt = value; 
         },
+        setSelected(navItems: NavItem[], navItem: NavItem){
+            navItems.forEach(element => {
+                element.selected = false;
+            });
+            navItem.selected = true;
+        }
     }
 
 })
@@ -70,10 +83,6 @@ export default defineComponent({
         background-color: colors.$brightColor;
         width: 5px;
         height: 50%;
-    }
-
-    .selected{
-        background-color: colors.$secondary;
     }
 }
 </style>
