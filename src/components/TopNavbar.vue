@@ -11,11 +11,19 @@
       <Navbar :navItems="navItems"/>
     </div>
 
-    <div id="my-name">
+    <div id="contacts">
+      <div class="Pin">
+        <Pin filename="itch.png" :callback="print"/>
+      </div>
+      <div class="Pin">
+        <Pin filename="GitHub.png" :callback="print"/>
+      </div>
       <div class="Pin">
         <Pin filename="pp.png" :callback="print"/>
       </div>
-      <h1>Arcadeuh</h1>
+      <div class="Pin">
+        <Pin filename="linkedin.png" :callback="print"/>
+      </div>
     </div>
   </div>
 </template>
@@ -79,6 +87,16 @@ export default defineComponent({
   h1{
     height: 100%;
     color: colors.$brightColor;
+  }
+}
+#contacts{
+  display: flex;
+  align-items: center;
+  margin-left: 5px;
+  user-select:none;
+
+  & > * {
+    margin: 5px;
   }
 }
 .Pin{
