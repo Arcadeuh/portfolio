@@ -2,7 +2,7 @@
   <div class="top-navbar">
     <div id="my-name">
       <div class="Pin">
-        <Pin class="boxShadowDarkColor" filename="pp.png" :callback="print"/>
+        <Pin class="boxShadowDarkColor pointer" filename="pp.png" @click="goTo('/')"/>
       </div>
       <h1 class="textShadowDarkColor">Arcadeuh</h1>
     </div>
@@ -13,16 +13,16 @@
 
     <div id="contacts">
       <div class="Pin">
-        <Pin class="boxShadowDarkColor" filename="itch-2.png" :callback="print"/>
+        <Pin class="boxShadowDarkColor pointer" filename="itch-2.png" @click="openNewWindow('https://arcadeuh.itch.io/')"/>
       </div>
       <div class="Pin">
-        <Pin class="boxShadowDarkColor" filename="GitHub.png" :callback="print"/>
+        <Pin class="boxShadowDarkColor pointer" filename="GitHub.png" @click="openNewWindow('https://github.com/Arcadeuh')"/>
       </div>
       <div class="Pin">
-        <Pin class="boxShadowDarkColor" filename="pp.png" :callback="print"/>
+        <Pin class="boxShadowDarkColor pointer" altText="CV"/>
       </div>
       <div class="Pin">
-        <Pin class="boxShadowDarkColor" filename="linkedin.png" :callback="print"/>
+        <Pin class="boxShadowDarkColor pointer" filename="linkedin.png" @click="openNewWindow('https://www.linkedin.com/in/bastien-fouque-a38502197/')"/>
       </div>
     </div>
   </div>
@@ -45,18 +45,33 @@ export default defineComponent({
   data(){
     return {
       navItems: [
-        new NavItem("GameDesign", this.print),
-        new NavItem("Programmation", this.printTwo)
+        new NavItem("GameDesign", () => {
+          this.$router.push("gamedesign");
+        }),
+        new NavItem("Programmation", () => {
+          this.$router.push("programmation");
+        }),
       ],
     }
   },
 
   methods: {
+    //DEBUG
     print(){
       console.log("THERE");
     },
     printTwo(){
       console.log("2");
+    },
+    //NAVIGATION
+    openNewWindow(url: string){
+      window.open(url);
+    },
+    goTo(path: string){
+      this.navItems.forEach(element => {
+        element.selected = false;
+      });
+      this.$router.push(path);
     }
   }
 
