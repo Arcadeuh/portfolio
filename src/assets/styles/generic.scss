@@ -25,6 +25,9 @@
 .textShadowBrightColor{
     text-shadow: -2.5px 2.5px 0px colors.$brightColor;
 }
+.textShadowBrightColor{
+    text-shadow: -2.5px 2.5px 0px colors.$secondary;
+}
 
 //box shadows
 .boxShadowDarkColor{

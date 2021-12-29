@@ -19,7 +19,7 @@
         <Pin class="boxShadowDarkColor pointer" filename="GitHub.png" @click="openNewWindow('https://github.com/Arcadeuh')"/>
       </div>
       <div class="Pin">
-        <Pin class="boxShadowDarkColor pointer" altText="CV"/>
+        <Pin class="boxShadowDarkColor pointer" altText="CV" @click="download('/CV_-_Fouque_Bastien.pdf', 'CV_-_Fouque_Bastien.pdf')"/>
       </div>
       <div class="Pin">
         <Pin class="boxShadowDarkColor pointer" filename="linkedin.png" @click="openNewWindow('https://www.linkedin.com/in/bastien-fouque-a38502197/')"/>
@@ -33,6 +33,7 @@ import Pin from '@/components/generic/Pin.vue';
 import Navbar from '@/components/generic/Navbar.vue';
 import { defineComponent } from 'vue';
 import { NavItem } from '@/elements/objects/NavItem';
+import {GenericMethods} from '@/elements/GenericMethods';
 
 export default defineComponent({
   name: 'TopNavbar',
@@ -63,15 +64,19 @@ export default defineComponent({
     printTwo(){
       console.log("2");
     },
+
     //NAVIGATION
     openNewWindow(url: string){
-      window.open(url);
+      GenericMethods.openNewWindow(url);
     },
     goTo(path: string){
       this.navItems.forEach(element => {
         element.selected = false;
       });
       this.$router.push(path);
+    },
+    download(fileUrl: string, fileName: string) {
+      GenericMethods.download(fileUrl, fileName);
     }
   }
 
