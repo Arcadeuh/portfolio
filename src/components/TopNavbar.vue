@@ -4,7 +4,7 @@
       <div class="Pin">
         <Pin class="boxShadowDarkColor pointer" filename="pp.png" @click="goTo('/')"/>
       </div>
-      <h1 class="textShadowDarkColor">Arcadeuh</h1>
+      <div class="textShadowDarkColor name">Arcadeuh</div>
     </div>
 
     <div class="Navbar">
@@ -57,13 +57,6 @@ export default defineComponent({
   },
 
   methods: {
-    //DEBUG
-    print(){
-      console.log("THERE");
-    },
-    printTwo(){
-      console.log("2");
-    },
 
     //NAVIGATION
     openNewWindow(url: string){
@@ -89,41 +82,74 @@ export default defineComponent({
 
 .top-navbar{
   background-color: colors.$primary;
-  height: 75px;
+  //height: 75px;
   width: 100%;
   display: flex;
   justify-content: space-between;
+  //text-align: center;
 }
+
 #my-name{
   font-family: "Bungee";
-  display: flex;
-  align-items: center;
   margin-left: 5px;
   user-select:none;
+  /*
+  display: flex;
+  align-items: center;
+  */
+
   & > * {
     margin: 5px;
+    float: left;
+    display: block;
   }
 
-  h1{
-    height: 100%;
+  .name{
     color: colors.$brightColor;
+    font-size: 20px;
   }
 }
 #contacts{
-  display: flex;
-  align-items: center;
   margin-left: 5px;
   user-select:none;
 
   & > * {
     margin: 5px;
+    float: right;
+    display: block;
   }
 }
 .Pin{
   width: 50px;
+  min-width: 50px;
   height: 50px;
+  min-height: 50px;
 }
-.Navbar{
-  width: 20%;
+
+
+@media screen and (max-width: 710px) {
+  .top-navbar {
+    flex-direction: column;
+  }
+
+  #contacts{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: nowrap;
+    & > * {
+      float: none;
+      display: inherit;
+    }
+  }
+
+  #my-name{
+    display: flex;
+    flex-wrap: nowrap;
+    & > * {
+      float: none;
+      display: inherit;
+    }
+  }
+
 }
 </style>
