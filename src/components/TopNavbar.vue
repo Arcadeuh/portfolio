@@ -1,17 +1,27 @@
 <template>
   <div class="top-navbar">
-    <div id="my-name">
-      <div class="Pin">
-        <Pin class="boxShadowDarkColor pointer" filename="pp.png" @click="goTo('/')"/>
+
+    <div class="first">
+
+      <div class="content">
+        <div class="Pin">
+          <Pin class="boxShadowDarkColor pointer" filename="pp.png" @click="goTo('/')"/>
+        </div>
+        <div class="textShadowDarkColor name">Arcadeuh</div>
       </div>
-      <div class="textShadowDarkColor name">Arcadeuh</div>
+
+      <div class="Pin expand">
+        <Pin v-if="!showElements" class="pointer" filename="three_bar.png" @click="toggleShowElements()"/>
+        <Pin v-else class="pointer" filename="cross.png" @click="toggleShowElements()"/>
+      </div>
+      
     </div>
 
-    <div class="Navbar">
+    <div :class="{'hiddenOnShrink': !showElements, 'Navbar': true}">
       <Navbar :navItems="navItems"/>
     </div>
 
-    <div id="contacts">
+    <div :class="{'hiddenOnShrink': !showElements, 'last': true}">
       <div class="Pin">
         <Pin class="boxShadowDarkColor backgroundBrightColor pointer" filename="itch-2.png" @click="openNewWindow('https://arcadeuh.itch.io/')"/>
       </div>
@@ -26,6 +36,7 @@
       </div>
     </div>
   </div>
+
 </template>
 
 <script lang="ts">
@@ -53,6 +64,8 @@ export default defineComponent({
           this.$router.push("programmation");
         }),
       ],
+
+      showElements: false
     }
   },
 
@@ -70,6 +83,9 @@ export default defineComponent({
     },
     download(fileUrl: string, fileName: string) {
       GenericMethods.download(fileUrl, fileName);
+    },
+    toggleShowElements(){
+      this.showElements = !this.showElements;
     }
   }
 
@@ -82,43 +98,60 @@ export default defineComponent({
 
 .top-navbar{
   background-color: colors.$primary;
-  //height: 75px;
+  position: fixed; /* Set the navbar to fixed position */
+  top: 0; /* Position the navbar at the top of the page */
   width: 100%;
   display: flex;
   justify-content: space-between;
   //text-align: center;
-}
 
-#my-name{
-  font-family: "Bungee";
-  margin-left: 5px;
-  user-select:none;
-  /*
-  display: flex;
-  align-items: center;
-  */
+  .first{
+    font-family: "Bungee";
+    margin-left: 5px;
+    user-select:none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-  & > * {
-    margin: 5px;
-    float: left;
-    display: block;
+    .content{
+      display: flex;
+      align-items: center;
+      & > * {
+        margin: 5px;
+        /*
+        float: left;
+        display: block;
+        */
+      }
+    }
+
+    .name{
+      color: colors.$brightColor;
+      font-size: 20px;
+    }
+
+    .expand{
+      display: none;
+    }
   }
 
-  .name{
-    color: colors.$brightColor;
-    font-size: 20px;
-  }
-}
-#contacts{
-  margin-left: 5px;
-  user-select:none;
+  .last{
+    margin-left: 5px;
+    user-select:none;
+    display: flex;
+    justify-content: space-between;
 
-  & > * {
-    margin: 5px;
-    float: right;
-    display: block;
+    & > * {
+      margin: 5px;
+      /*
+      float: right;
+      display: block;
+      */
+    }
   }
+
 }
+
 .Pin{
   width: 50px;
   min-width: 50px;
@@ -127,27 +160,24 @@ export default defineComponent({
 }
 
 
-@media screen and (max-width: 710px) {
+@media screen and (max-width: 725px) {
   .top-navbar {
     flex-direction: column;
-  }
 
-  #contacts{
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: nowrap;
-    & > * {
-      float: none;
-      display: inherit;
+    .last{
+      display: flex;
+      flex-wrap: nowrap;
+      justify-content: space-around;
     }
-  }
 
-  #my-name{
-    display: flex;
-    flex-wrap: nowrap;
-    & > * {
-      float: none;
-      display: inherit;
+    .hiddenOnShrink {
+      display: none;
+    }
+
+    .first{
+      .expand{
+        display: inherit;
+      }
     }
   }
 

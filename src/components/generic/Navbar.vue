@@ -62,7 +62,7 @@ export default defineComponent({
     width: 100%;
     height: 100%;
     color: colors.$brightColor;
-    flex-wrap: nowrap;
+    //flex-wrap: wrap;
     user-select:none;
 
     .list-item{
@@ -75,7 +75,7 @@ export default defineComponent({
         justify-content: center;
         align-items: center;
         font-size: 90%;
-        padding: 0px 5px 0px 5px;
+        padding: 0px 10px 0px 10px;
         height: 100%;
     }
 
