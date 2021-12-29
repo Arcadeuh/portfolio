@@ -17,6 +17,9 @@
 .backgroundBrightColor{
     background-color: colors.$brightColor;
 }
+.backgroundDarkColor{
+    background-color: colors.$darkColor;
+}
 
 //Text shadows
 .textShadowDarkColor{
@@ -29,12 +32,26 @@
     text-shadow: -2.5px 2.5px 0px colors.$secondary;
 }
 
+//Text shadows
+.textDarkColor{
+    color: colors.$darkColor;
+}
+.textBrightColor{
+    color: colors.$brightColor;
+}
+.textSecondaryColor{
+    color: colors.$secondary;
+}
+
 //box shadows
 .boxShadowDarkColor{
     box-shadow: -2.5px 2.5px 0px colors.$darkColor;
 }
 .boxShadowBrightColor{
     box-shadow: -2.5px 2.5px 0px colors.$brightColor;
+}
+.boxShadowSecondaryColor{
+    box-shadow: -2.5px 2.5px 0px colors.$secondary;
 }
 
 //Selection

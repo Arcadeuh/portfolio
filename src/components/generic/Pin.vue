@@ -26,7 +26,6 @@ export default defineComponent({
 
 <style scoped lang="scss">
 img{
-    background-color: white;
     width: 100%;
     height: 100%;
 }
@@ -34,8 +33,6 @@ div{
     display: flex;
     align-items: center;
     justify-content: center;
-    
-    background-color: white;
 
     width: 100%;
     height: 100%;

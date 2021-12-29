@@ -13,16 +13,16 @@
 
     <div id="contacts">
       <div class="Pin">
-        <Pin class="boxShadowDarkColor pointer" filename="itch-2.png" @click="openNewWindow('https://arcadeuh.itch.io/')"/>
+        <Pin class="boxShadowDarkColor backgroundBrightColor pointer" filename="itch-2.png" @click="openNewWindow('https://arcadeuh.itch.io/')"/>
       </div>
       <div class="Pin">
-        <Pin class="boxShadowDarkColor pointer" filename="GitHub.png" @click="openNewWindow('https://github.com/Arcadeuh')"/>
+        <Pin class="boxShadowDarkColor backgroundBrightColor pointer" filename="GitHub.png" @click="openNewWindow('https://github.com/Arcadeuh')"/>
       </div>
       <div class="Pin">
-        <Pin class="boxShadowDarkColor pointer" altText="CV" @click="download('/CV_-_Fouque_Bastien.pdf', 'CV_-_Fouque_Bastien.pdf')"/>
+        <Pin class="boxShadowDarkColor backgroundSecondaryColor textDarkColor pointer" altText="CV" @click="download('/CV_-_Fouque_Bastien.pdf', 'CV_-_Fouque_Bastien.pdf')"/>
       </div>
       <div class="Pin">
-        <Pin class="boxShadowDarkColor pointer" filename="linkedin.png" @click="openNewWindow('https://www.linkedin.com/in/bastien-fouque-a38502197/')"/>
+        <Pin class="boxShadowDarkColor backgroundBrightColor pointer" filename="linkedin.png" @click="openNewWindow('https://www.linkedin.com/in/bastien-fouque-a38502197/')"/>
       </div>
     </div>
   </div>
