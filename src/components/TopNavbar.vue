@@ -63,6 +63,9 @@ export default defineComponent({
         new NavItem("Programmation", () => {
           this.$router.push("programmation");
         }),
+        new NavItem("PROUT", () => {
+          this.$router.push("programmation");
+        }),
       ],
 
       showElements: false
@@ -94,10 +97,10 @@ export default defineComponent({
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-@use '@/assets/styles/colors.scss' as colors;
+@use '@/assets/styles/variables.scss' as variables;
 
 .top-navbar{
-  background-color: colors.$primary;
+  background-color: variables.$primary;
   position: fixed; /* Set the navbar to fixed position */
   top: 0; /* Position the navbar at the top of the page */
   width: 100%;
@@ -126,7 +129,7 @@ export default defineComponent({
     }
 
     .name{
-      color: colors.$brightColor;
+      color: variables.$brightColor;
       font-size: 20px;
     }
 
@@ -160,7 +163,7 @@ export default defineComponent({
 }
 
 
-@media screen and (max-width: 725px) {
+@media screen and (max-width: variables.$sm) {
   .top-navbar {
     flex-direction: column;
 

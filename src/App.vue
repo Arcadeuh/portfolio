@@ -1,9 +1,5 @@
 <template>
   <TopNavbar/>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div>
   <router-view/>
 </template>
 
@@ -22,7 +18,7 @@ export default defineComponent({
 
 <style lang="scss">
 @use '@/assets/styles/generic.scss' as generic;
-@use '@/assets/styles/colors.scss' as colors;
+@use '@/assets/styles/variables.scss' as variables;
 
 @font-face {
     font-family: 'ABeeZee';
@@ -40,21 +36,8 @@ export default defineComponent({
   -moz-osx-font-smoothing: grayscale;
   //text-align: center;
   //color: #2c3e50;
-  background-color: colors.$backgroundColor;
+  background-color: variables.$backgroundColor;
   margin-top: 60px;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
 }
 
 * {

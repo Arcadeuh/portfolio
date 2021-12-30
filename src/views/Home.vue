@@ -1,7 +1,9 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+    <div class="welcome">
+      Bienvenue
+    </div>
+    <img src="@/assets/pictures/transition_white_red.svg"/>
   </div>
 </template>
 
@@ -16,3 +18,22 @@ export default defineComponent({
   },
 });
 </script>
+
+<style scoped lang="scss">
+@use '@/assets/styles/variables.scss' as variables;
+
+.home{
+  text-align: center;
+
+  .welcome{
+    font-size: 50px;
+    font-family: 'Bungee';
+    color: variables.$darkColor;
+    text-shadow: -5px 5px 0px variables.$secondary;
+  }
+
+  img{
+    width: 100%;
+  }
+}
+</style>

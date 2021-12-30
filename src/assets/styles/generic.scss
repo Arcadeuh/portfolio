@@ -1,4 +1,4 @@
-@use '@/assets/styles/colors.scss' as colors;
+@use '@/assets/styles/variables.scss' as variables;
 
 .circle{
     width: 100%;
@@ -10,48 +10,48 @@
     background-color: rgba(0, 0, 0, 0.2);
 }
 
-//Background colors
+//Background variables
 .backgroundSecondaryColor{
-    background-color: colors.$secondary;
+    background-color: variables.$secondary;
 }
 .backgroundBrightColor{
-    background-color: colors.$brightColor;
+    background-color: variables.$brightColor;
 }
 .backgroundDarkColor{
-    background-color: colors.$darkColor;
+    background-color: variables.$darkColor;
 }
 
 //Text shadows
 .textShadowDarkColor{
-    text-shadow: -2.5px 2.5px 0px colors.$darkColor;
+    text-shadow: -2.5px 2.5px 0px variables.$darkColor;
 }
 .textShadowBrightColor{
-    text-shadow: -2.5px 2.5px 0px colors.$brightColor;
+    text-shadow: -2.5px 2.5px 0px variables.$brightColor;
 }
 .textShadowBrightColor{
-    text-shadow: -2.5px 2.5px 0px colors.$secondary;
+    text-shadow: -2.5px 2.5px 0px variables.$secondary;
 }
 
 //Text shadows
 .textDarkColor{
-    color: colors.$darkColor;
+    color: variables.$darkColor;
 }
 .textBrightColor{
-    color: colors.$brightColor;
+    color: variables.$brightColor;
 }
 .textSecondaryColor{
-    color: colors.$secondary;
+    color: variables.$secondary;
 }
 
 //box shadows
 .boxShadowDarkColor{
-    box-shadow: -2.5px 2.5px 0px colors.$darkColor;
+    box-shadow: -2.5px 2.5px 0px variables.$darkColor;
 }
 .boxShadowBrightColor{
-    box-shadow: -2.5px 2.5px 0px colors.$brightColor;
+    box-shadow: -2.5px 2.5px 0px variables.$brightColor;
 }
 .boxShadowSecondaryColor{
-    box-shadow: -2.5px 2.5px 0px colors.$secondary;
+    box-shadow: -2.5px 2.5px 0px variables.$secondary;
 }
 
 //Selection

@@ -2,7 +2,8 @@
     <div class="list">
         <!--div id="first-element">&#160;</div-->
         <div style="width: 100%; height: 100%; display: flex; align-items: center;" v-for="(navItem, index) in navItems" :key="navItem">
-            <div v-if="index == 0" class="separator">&#160;</div>
+            <div v-if="index==0" class="separator">&#160;</div>
+            <div v-else class="separator showOnShrink">&#160;</div>
             <div class="list-item"  
                 v-on:click="navItem.callback();setSelected(navItems, navItem);" 
                 @mouseenter="setMouseOver(navItem, true)" 
@@ -52,7 +53,7 @@ export default defineComponent({
 
 
 <style scoped lang="scss">
-@use '@/assets/styles/colors.scss' as colors;
+@use '@/assets/styles/variables.scss' as variables;
 
 .list{
     font-family: "Bungee";
@@ -61,7 +62,7 @@ export default defineComponent({
     justify-content: space-between;
     width: 100%;
     height: 100%;
-    color: colors.$brightColor;
+    color: variables.$brightColor;
     //flex-wrap: wrap;
     user-select:none;
 
@@ -80,9 +81,24 @@ export default defineComponent({
     }
 
     .separator{
-        background-color: colors.$brightColor;
+        background-color: variables.$brightColor;
         width: 5px;
         height: 50%;
+    }
+
+    .showOnShrink{
+        display: none;
+    }
+}
+
+@media screen and (max-width: variables.$xs) {
+    .list{
+        flex-direction: column;
+        justify-content: flex-start;
+
+        .showOnShrink{
+            display: inherit;
+        }
     }
 }
 </style>
