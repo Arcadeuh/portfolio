@@ -113,6 +113,7 @@ export default defineComponent({
   width: 100%;
   display: flex;
   justify-content: space-between;
+  box-shadow: 0px 5px 15px variables.$darkColor;
   //text-align: center;
 
   .first{
