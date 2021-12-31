@@ -5,7 +5,7 @@
     </div>
     <img src="@/assets/pictures/transition_white_red.svg">
     <div class="text-zone backgroundPrimaryColor textBrightColor">
-      <div class="left-element">
+      <div class="left-element boxShadowDarkColor">
         Je m'appelle Bastien Fouque, étudiant ingénieur. Après avoir passé 4 ans dans une étude d'ingénieur généraliste, j'ai décidé de faire ma 5ème année au Canada. Mon but ? Faire une maîtrise en informatique, spécialisation jeu vidéo. Ainsi, je peux m'améliorer dans ce que j'aime faire, tout en décrochant un double diplôme.
       </div>
       <img src="@/assets/pictures/canada.jpg">
@@ -13,13 +13,13 @@
     <img src="@/assets/pictures/transition_red_blue.svg">
     <div class="text-zone backgroundDarkColor textBrightColor">
       <img class="left-element" src="@/assets/pictures/creation.jpg">
-      <div>
+      <div class="boxShadowSecondaryColor">
         Je suis quelqu'un de passionné par le processus créatif, de la phase d'idéalisation à la finalisation. Cela passe par le théâtre, l'écriture, mais aussi par la création de logiciel et, bien sûr, le jeu vidéo. J'ai donc participé à pas mal de gamejam, créé des jeux sur mon temps libre mais aussi à l'école.
       </div>
     </div>
     <img src="@/assets/pictures/transition_blue_orange.svg">
     <div class="text-zone backgroundSecondaryColor textDarkColor">
-      <div class="left-element">
+      <div class="left-element boxShadowPrimaryColor">
         J'aimerais plus tard pouvoir travailler en tant que génie logiciel ou bien développeur, notamment dans le jeu vidéo. Mon rêve serait de pouvoir vivre en tant que game designer, vivre de mes créations. Ce portefolio vous permettera, j'espère, d'avoir un aperçu de mes compétences. Bonne lecture !
       </div>
       <img src="@/assets/pictures/jv.png">
@@ -73,10 +73,11 @@ export default defineComponent({
 
     div{
       flex: 1.25;
+      padding: 5px;
     }
 
     .left-element{
-      margin-right: 50px;
+      margin-right: 100px;
     }
   }
 }
