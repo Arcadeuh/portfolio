@@ -1,26 +1,28 @@
 <template>
   <div class="top-navbar">
 
-    <div class="first">
+    <div class="first"><!--Premier élément de la top navbar-->
 
-      <div class="content">
+      <div class="content"><!--Contenu principal-->
         <div class="Pin">
           <Pin class="boxShadowDarkColor pointer" filename="pp.png" @click="goTo('/')"/>
         </div>
         <div class="textShadowDarkColor name">Arcadeuh</div>
       </div>
 
-      <div class="Pin expand">
+      <div class="Pin expand"><!--Bouton permettant de déplier la top navbar quand sur petit écran-->
         <Pin v-if="!showElements" class="pointer" filename="three_bar.png" @click="toggleShowElements()"/>
         <Pin v-else class="pointer" filename="cross.png" @click="toggleShowElements()"/>
       </div>
       
     </div>
 
+    <!--Navigation principale, cachée quand sur petit écran-->
     <div :class="{'hiddenOnShrink': !showElements, 'Navbar': true}">
       <Navbar :navItems="navItems"/>
     </div>
 
+    <!--Contact, cachés quand sur petit écran-->
     <div :class="{'hiddenOnShrink': !showElements, 'last': true}">
       <div class="Pin">
         <Pin class="boxShadowDarkColor backgroundBrightColor pointer" filename="itch-2.png" @click="openNewWindow('https://arcadeuh.itch.io/')"/>
@@ -56,6 +58,7 @@ export default defineComponent({
 
   data(){
     return {
+      //Liste des navigations possibles dans la Top navbar
       navItems: [
         new NavItem("GameDesign", () => {
           this.$router.push("gamedesign");
@@ -68,6 +71,7 @@ export default defineComponent({
         }),
       ],
 
+      //Boolean qui permet de savoir si la top navbar est ouverte ou pas
       showElements: false
     }
   },
@@ -76,15 +80,18 @@ export default defineComponent({
 
     //NAVIGATION
     openNewWindow(url: string){
+      //Fait appel à une méthode générique
       GenericMethods.openNewWindow(url);
     },
     goTo(path: string){
+      //Permet de naviguer, tout en remettant à 0 les éléments de la navbar
       this.navItems.forEach(element => {
         element.selected = false;
       });
       this.$router.push(path);
     },
     download(fileUrl: string, fileName: string) {
+      //Fait appel à une méthode générique
       GenericMethods.download(fileUrl, fileName);
     },
     toggleShowElements(){
