@@ -57,6 +57,20 @@ Donne des classes génériques, réutilisables, valable au sein de ce projet
     box-shadow: -2.5px 2.5px 0px variables.$secondary;
 }
 
+//background color
+.backgroundDarkColor{
+    background-color: variables.$darkColor;
+}
+.backgroundBrightColor{
+    background-color: variables.$brightColor;
+}
+.backgroundSecondaryColor{
+    background-color: variables.$secondary;
+}
+.backgroundPrimaryColor{
+    background-color: variables.$primary;
+}
+
 //Selection
 .pointer{
     cursor: pointer;
