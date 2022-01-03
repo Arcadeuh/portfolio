@@ -6,7 +6,8 @@
     <img src="@/assets/pictures/transition_white_red.svg">
     <div class="text-zone backgroundPrimaryColor textBrightColor">
       <div class="left-element boxShadowDarkColor">
-        {{introductionArray[0]['Text']}}
+        <h1 class="textShadowDarkColor">{{introductionArray[0].getTitle()}}</h1><br/>
+        <p>{{introductionArray[0].getText()}}</p>
       </div>
       <img class="boxShadowDarkColor" src="@/assets/pictures/canada.jpg">
     </div>
@@ -14,13 +15,15 @@
     <div class="text-zone backgroundDarkColor textBrightColor">
       <img class="left-element boxShadowSecondaryColor" src="@/assets/pictures/creation.jpg">
       <div class="boxShadowSecondaryColor">
-        {{introductionArray[1]['Text']}}
+        <h1 class="textShadowSecondaryColor">{{introductionArray[1].getTitle()}}</h1><br/>
+        <p>{{introductionArray[1].getText()}}</p>
       </div>
     </div>
     <img src="@/assets/pictures/transition_blue_orange.svg">
-    <div class="text-zone backgroundSecondaryColor textDarkColor">
+    <div class="text-zone backgroundSecondaryColor textBrightColor">
       <div class="left-element boxShadowPrimaryColor">
-        {{introductionArray[2]['Text']}}
+        <h1 class="textShadowPrimaryColor">{{introductionArray[2].getTitle()}}</h1><br/>
+        <p class="">{{introductionArray[2].getText()}}</p>
       </div>
       <img class="boxShadowPrimaryColor" src="@/assets/pictures/jv.png">
     </div>
@@ -31,6 +34,7 @@
 import { defineComponent } from 'vue';
 import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
 import { DatabaseInterface } from '@/elements/interface/DatabaseInterface';
+import { IntroductionItem } from '@/elements/objects/IntroductionItem';
 
 export default defineComponent({
   name: 'Home',
@@ -58,6 +62,10 @@ export default defineComponent({
 
 .home{
   text-align: center;
+
+  h1{
+    font-family: 'Bungee';
+  }
 
   .welcome{
     font-size: 75px;

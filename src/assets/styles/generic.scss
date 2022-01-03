@@ -31,11 +31,14 @@ Donne des classes génériques, réutilisables, valable au sein de ce projet
 .textShadowBrightColor{
     text-shadow: -2.5px 2.5px 0px variables.$brightColor;
 }
-.textShadowBrightColor{
+.textShadowSecondaryColor{
     text-shadow: -2.5px 2.5px 0px variables.$secondary;
 }
+.textShadowPrimaryColor{
+    text-shadow: -2.5px 2.5px 0px variables.$primary;
+}
 
-//Text shadows
+//Text color
 .textDarkColor{
     color: variables.$darkColor;
 }

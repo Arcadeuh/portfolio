@@ -10,7 +10,7 @@
                 v-on:click="navItem.callback();setSelected(navItems, navItem);" 
                 @mouseenter="setMouseOver(navItem, true)" 
                 @mouseleave="setMouseOver(navItem, false)"
-                :class="{ 'textShadowBrightColor': (navItem.selected && !mouseOverIt) || navItem.mouseOver, 'backgroundSecondaryColor': navItem.selected }"
+                :class="{ 'textShadowSecondaryColor': (navItem.selected && !mouseOverIt) || navItem.mouseOver, 'backgroundSecondaryColor': navItem.selected }"
             ><!-- item de navigation  -->
                 {{navItem.name}}
             </div>
