@@ -6,23 +6,23 @@
     <img src="@/assets/pictures/transition_white_red.svg">
     <div class="text-zone backgroundPrimaryColor textBrightColor">
       <div class="left-element boxShadowDarkColor">
-        Je m'appelle Bastien Fouque, étudiant ingénieur. Après avoir passé 4 ans dans une étude d'ingénieur généraliste, j'ai décidé de faire ma 5ème année au Canada. Mon but ? Faire une maîtrise en informatique, spécialisation jeu vidéo. Ainsi, je peux m'améliorer dans ce que j'aime faire, tout en décrochant un double diplôme.
+        {{introductionArray[0]['Text']}}
       </div>
-      <img src="@/assets/pictures/canada.jpg">
+      <img class="boxShadowDarkColor" src="@/assets/pictures/canada.jpg">
     </div>
     <img src="@/assets/pictures/transition_red_blue.svg">
     <div class="text-zone backgroundDarkColor textBrightColor">
-      <img class="left-element" src="@/assets/pictures/creation.jpg">
+      <img class="left-element boxShadowSecondaryColor" src="@/assets/pictures/creation.jpg">
       <div class="boxShadowSecondaryColor">
-        Je suis quelqu'un de passionné par le processus créatif, de la phase d'idéalisation à la finalisation. Cela passe par le théâtre, l'écriture, mais aussi par la création de logiciel et, bien sûr, le jeu vidéo. J'ai donc participé à pas mal de gamejam, créé des jeux sur mon temps libre mais aussi à l'école.
+        {{introductionArray[1]['Text']}}
       </div>
     </div>
     <img src="@/assets/pictures/transition_blue_orange.svg">
     <div class="text-zone backgroundSecondaryColor textDarkColor">
       <div class="left-element boxShadowPrimaryColor">
-        J'aimerais plus tard pouvoir travailler en tant que génie logiciel ou bien développeur, notamment dans le jeu vidéo. Mon rêve serait de pouvoir vivre en tant que game designer, vivre de mes créations. Ce portefolio vous permettera, j'espère, d'avoir un aperçu de mes compétences. Bonne lecture !
+        {{introductionArray[2]['Text']}}
       </div>
-      <img src="@/assets/pictures/jv.png">
+      <img class="boxShadowPrimaryColor" src="@/assets/pictures/jv.png">
     </div>
   </div>
 </template>
@@ -30,11 +30,25 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
+import { DatabaseInterface } from '@/elements/interface/DatabaseInterface';
 
 export default defineComponent({
   name: 'Home',
   components: {
     HelloWorld,
+  },
+  data(){
+    return {
+      introductionArray: []
+    }
+  },
+  created(){
+    this.getIntroductionData();
+  },
+  methods: {
+    async getIntroductionData(){
+      await DatabaseInterface.GetIntroductions(this.introductionArray);
+    }
   },
 });
 </script>

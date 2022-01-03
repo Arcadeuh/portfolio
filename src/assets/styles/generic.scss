@@ -59,6 +59,9 @@ Donne des classes génériques, réutilisables, valable au sein de ce projet
 .boxShadowPrimaryColor{
     box-shadow: -2.5px 2.5px 0px variables.$primary;
 }
+.biggerShadow{
+    box-shadow: -5px 5px;
+}
 
 //background color
 .backgroundDarkColor{

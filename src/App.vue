@@ -6,6 +6,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import TopNavbar from '@/components/TopNavbar.vue'
+import { DatabaseInterface } from './elements/interface/DatabaseInterface'
 
 export default defineComponent({
   components: {
