@@ -14,7 +14,11 @@ export abstract class DatabaseInterface{
             if (err) { console.error(err); return; }
             if(records){
                 records.forEach(function(record) {
-                    introductionData.push(new IntroductionItem(record.fields['Title']?.toString(), record.fields['Text']?.toString()));
+                    introductionData.push(new IntroductionItem(
+                        record.fields['Title'].toString(), 
+                        record.fields['Text'].toString(),
+                        record.fields['Image'][0]['url'].toString()
+                    ));
                 });
             }
         });

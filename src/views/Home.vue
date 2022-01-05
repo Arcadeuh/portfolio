@@ -9,11 +9,11 @@
         <h1 class="textShadowDarkColor">{{introductionArray[0].getTitle()}}</h1><br/>
         <p>{{introductionArray[0].getText()}}</p>
       </div>
-      <img class="boxShadowDarkColor" src="@/assets/pictures/canada.jpg">
+      <img class="boxShadowDarkColor" :src="introductionArray[0].getImageUrl()">
     </div>
     <img src="@/assets/pictures/transition_red_blue.svg">
     <div class="text-zone backgroundDarkColor textBrightColor">
-      <img class="left-element boxShadowSecondaryColor" src="@/assets/pictures/creation.jpg">
+      <img class="left-element boxShadowSecondaryColor" :src="introductionArray[1].getImageUrl()">
       <div class="boxShadowSecondaryColor">
         <h1 class="textShadowSecondaryColor">{{introductionArray[1].getTitle()}}</h1><br/>
         <p>{{introductionArray[1].getText()}}</p>
@@ -25,7 +25,7 @@
         <h1 class="textShadowPrimaryColor">{{introductionArray[2].getTitle()}}</h1><br/>
         <p class="">{{introductionArray[2].getText()}}</p>
       </div>
-      <img class="boxShadowPrimaryColor" src="@/assets/pictures/jv.png">
+      <img class="boxShadowPrimaryColor" :src="introductionArray[2].getImageUrl()">
     </div>
   </div>
 </template>
@@ -43,7 +43,7 @@ export default defineComponent({
   },
   data(){
     return {
-      introductionArray: []
+      introductionArray: []//IntroductionItem type
     }
   },
   created(){
@@ -140,7 +140,7 @@ export default defineComponent({
 @media screen and (max-width: variables.$xs) {
   .home{
     .welcome{
-      font-size: 25px;
+      font-size: 40px;
     }
   }
 }

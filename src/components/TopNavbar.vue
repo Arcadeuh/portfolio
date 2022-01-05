@@ -62,12 +62,15 @@ export default defineComponent({
       navItems: [
         new NavItem("GameDesign", () => {
           this.$router.push("gamedesign");
+          this.setShowElements(false);
         }),
         new NavItem("Programmation", () => {
           this.$router.push("programmation");
+          this.setShowElements(false);
         }),
         new NavItem("PROUT", () => {
           this.$router.push("programmation");
+          this.setShowElements(false);
         }),
       ],
 
@@ -96,6 +99,9 @@ export default defineComponent({
     },
     toggleShowElements(){
       this.showElements = !this.showElements;
+    },
+    setShowElements(value: boolean){
+      this.showElements = value;
     }
   }
 
