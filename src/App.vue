@@ -38,7 +38,7 @@ export default defineComponent({
   //text-align: center;
   //color: #2c3e50;
   background-color: variables.$backgroundColor;
-  margin-top: 60px;
+  margin-top: 80px;
 }
 
 * {

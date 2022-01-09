@@ -25,6 +25,14 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
+@use '@/assets/styles/variables.scss' as variables;
+
+.circle{
+    box-shadow: -2.5px 2.5px 0px variables.$darkColor;  
+}
+.circle:hover{
+    box-shadow: -4px 4px 0px variables.$darkColor;  
+}
 img{
     width: 100%;
     height: 100%;

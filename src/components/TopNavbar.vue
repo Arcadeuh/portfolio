@@ -25,16 +25,16 @@
     <!--Contact, cachés quand sur petit écran-->
     <div :class="{'hiddenOnShrink': !showElements, 'last': true}">
       <div class="Pin">
-        <Pin class="boxShadowDarkColor backgroundBrightColor pointer" filename="itch-2.png" @click="openNewWindow('https://arcadeuh.itch.io/')"/>
+        <Pin class="backgroundBrightColor pointer" filename="itch-2.png" @click="openNewWindow('https://arcadeuh.itch.io/')"/>
       </div>
       <div class="Pin">
-        <Pin class="boxShadowDarkColor backgroundBrightColor pointer" filename="GitHub.png" @click="openNewWindow('https://github.com/Arcadeuh')"/>
+        <Pin class="backgroundBrightColor pointer" filename="GitHub.png" @click="openNewWindow('https://github.com/Arcadeuh')"/>
       </div>
       <div class="Pin">
-        <Pin class="boxShadowDarkColor backgroundSecondaryColor textDarkColor pointer" altText="CV" @click="download('/CV_-_Fouque_Bastien.pdf', 'CV_-_Fouque_Bastien.pdf')"/>
+        <Pin class="backgroundSecondaryColor textDarkColor pointer" altText="CV" @click="download('/CV_-_Fouque_Bastien.pdf', 'CV_-_Fouque_Bastien.pdf')"/>
       </div>
       <div class="Pin">
-        <Pin class="boxShadowDarkColor backgroundBrightColor pointer" filename="linkedin.png" @click="openNewWindow('https://www.linkedin.com/in/bastien-fouque-a38502197/')"/>
+        <Pin class="backgroundBrightColor pointer" filename="linkedin.png" @click="openNewWindow('https://www.linkedin.com/in/bastien-fouque-a38502197/')"/>
       </div>
     </div>
   </div>

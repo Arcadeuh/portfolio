@@ -14,6 +14,9 @@ Donne des classes génériques, réutilisables, valable au sein de ce projet
 }
 
 //Background variables
+.backgroundPrimaryColor{
+    background-color: variables.$primary;
+}
 .backgroundSecondaryColor{
     background-color: variables.$secondary;
 }
@@ -44,6 +47,9 @@ Donne des classes génériques, réutilisables, valable au sein de ce projet
 }
 .textBrightColor{
     color: variables.$brightColor;
+}
+.textPrimaryColor{
+    color: variables.$primary;
 }
 .textSecondaryColor{
     color: variables.$secondary;
