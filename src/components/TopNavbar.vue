@@ -61,15 +61,11 @@ export default defineComponent({
       //Liste des navigations possibles dans la Top navbar
       navItems: [
         new NavItem("GameDesign", () => {
-          this.$router.push("gamedesign");
+          this.$router.push("Gamedesign");
           this.setShowElements(false);
         }),
         new NavItem("Programmation", () => {
-          this.$router.push("programmation");
-          this.setShowElements(false);
-        }),
-        new NavItem("PROUT", () => {
-          this.$router.push("programmation");
+          this.$router.push("Programmation");
           this.setShowElements(false);
         }),
       ],

@@ -8,7 +8,7 @@
       </p>
     </div>
     <div class="links">
-      <Pin class="boxShadowDarkColor backgroundBrightColor pointer" filename='itch-2.png'></Pin>
+      <Pin class="boxShadowDarkColor backgroundBrightColor pointer" filename='itch-2.png' @click='openNewWindow("https://youtube.com")'></Pin>
       <Pin class="boxShadowDarkColor backgroundBrightColor pointer" filename='GitHub.png'></Pin>
     </div>
   </div>
@@ -16,8 +16,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
 import Pin from '@/components/generic/Pin.vue'
+import { GenericMethods } from '@/elements/GenericMethods';
+import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'ProjectCard',
@@ -33,7 +34,10 @@ export default defineComponent({
   },
 
   methods: {
-      
+    openNewWindow(url: string){
+      //Fait appel à une méthode générique
+      GenericMethods.openNewWindow(url);
+    },
   }
 
 });

@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import Home from '../views/Home.vue'
-import Gamedesign from '@/views/Gamedesign.vue'
+import ProjectList from '@/views/ProjectList.vue'
 import Programmation from '@/views/Programmation.vue'
 
 const routes: Array<RouteRecordRaw> = [
@@ -9,15 +9,15 @@ const routes: Array<RouteRecordRaw> = [
     name: 'Home',
     component: Home
   },
+
+  /*
+  * projectType get a string
+  * This string correspond, in the database
+  */
   {
-    path: '/gamedesign',
-    name: 'Gamedesign',
-    component: Gamedesign
-  },
-  {
-    path: '/programmation',
-    name: 'Programmation',
-    component: Programmation
+    path: '/:category',
+    name: 'ProjectList',
+    component: ProjectList
   },
   {
     path: '/about',
