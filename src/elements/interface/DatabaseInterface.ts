@@ -42,7 +42,7 @@ export abstract class DatabaseInterface{
     * Category
     * Description
     * Image
-    * GitHub
+    * Github
     * Itch
     * OtherUrl
     */

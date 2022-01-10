@@ -1,15 +1,31 @@
 <template>
   <div class="project-card">
-    <img src="@/assets/pictures/lcdd.png" class="pointer"/>
+    <img :src="projectData['Image'][0]['url']" class="pointer"/>
     <div class="text">
-      <h3 class="title textPrimaryColor">La cour des dieux</h3>
+      <h3 class="title textPrimaryColor">{{projectData['Name']}}</h3>
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit fuga aliquid, tempora iusto commodi illum quam minus doloremque, tempore officia nobis dolorem obcaecati harum officiis non veritatis, sunt incidunt molestiae.
+        {{projectData['Description']}}
       </p>
     </div>
     <div class="links">
-      <Pin class="boxShadowDarkColor backgroundBrightColor pointer" filename='itch-2.png' @click='openNewWindow("https://youtube.com")'></Pin>
-      <Pin class="boxShadowDarkColor backgroundBrightColor pointer" filename='GitHub.png'></Pin>
+      <a class="link">Voir plus -></a>
+      <div class="links-project">
+        <Pin v-if="projectData['Itch']!=undefined" 
+          class="boxShadowDarkColor backgroundBrightColor pointer bottom" 
+          filename='itch-2.png' 
+          @click="openNewWindow(projectData['Itch'])"
+        />
+        <Pin v-if="projectData['Github']!=undefined" 
+          class="boxShadowDarkColor backgroundBrightColor pointer bottom" 
+          filename='GitHub.png' 
+          @click="openNewWindow(projectData['Github'])"
+        />
+        <Pin v-if="projectData['OtherUrl']!=undefined" 
+          class="boxShadowDarkColor backgroundBrightColor pointer bottom" 
+          filename='link.png' 
+          @click="openNewWindow(projectData['OtherUrl'])"
+        />
+      </div>
     </div>
   </div>
 
@@ -27,6 +43,17 @@ export default defineComponent({
     Pin
   },
 
+  /*
+  * ProjectData is composed of : 
+  * Name
+  * idProject
+  * Category
+  * Description
+  * Image
+  * Github
+  * Itch
+  * OtherUrl
+  */
   props: ['projectData'],
 
   data(){
@@ -48,9 +75,13 @@ export default defineComponent({
 @use '@/assets/styles/variables.scss' as variables;
 
 .project-card{
-  width: 400px;
+  min-width: 250px;
+  min-height: 500px;
   margin: 20px;
   border: 5px solid variables.$darkColor;
+
+  display: flex;
+  flex-direction: column;
 
   img{
     width: 100%;
@@ -60,6 +91,7 @@ export default defineComponent({
   .text{
     margin-left: 10%;
     margin-right: 10%;
+    flex: 1;
 
     h3{
       font-family: "Bungee";
@@ -72,12 +104,21 @@ export default defineComponent({
 
   .links{
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
+    height: 60px;
 
-    &>*{
-      width: 50px;
-      height: 50px;
-      margin: 5px;
+    a{
+      display: flex;
+      margin-left: 10px;
+      align-items: center;
+    }
+
+    .links-project{
+      &>*{
+        width: 50px;
+        height: 50px;
+        margin: 5px;
+      }
     }
   }
 }
@@ -88,15 +129,17 @@ export default defineComponent({
 
 @media screen and (max-width: variables.$sm) {
   .project-card{
-    width: 300px;
+    min-width: 250px;
   }
 }
 
+/*
 @media screen and (max-width: variables.$xs) {
   .project-card{
     width: 90%;
     margin: 5%;
   }
 }
+*/
 
 </style>

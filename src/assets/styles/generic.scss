@@ -100,3 +100,17 @@ Donne des classes génériques, réutilisables, valable au sein de ce projet
 .pointer{
     cursor: pointer;
 }
+
+.bottom{
+    //position:relative;
+    bottom: 0;
+}
+
+.link{
+    color: variables.$primarySh1;
+    text-decoration: underline;
+    cursor: pointer;
+}
+.link:hover{
+    color: variables.$primary;
+}

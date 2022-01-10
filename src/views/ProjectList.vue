@@ -1,8 +1,7 @@
 <template>
-  <div v-for="project in projectList" :key="project">
-    <ProjectCard class="project-card"/>
+  <div class="list">
+      <ProjectCard v-for="project in projectList" :key="project" class="project-card" :projectData="project"/>
   </div>
-  <div>{{$route.params.category}}</div>
 </template>
 
 <script lang="ts">
@@ -40,7 +39,6 @@ export default defineComponent({
   watch:{
     $route(to, from) {
       this.updateProjectList();
-      console.log("THERE");
     }
   }
 
@@ -51,7 +49,13 @@ export default defineComponent({
 <style scoped lang="scss">
 @use '@/assets/styles/variables.scss' as variables;
 
-.project-card{
+.list{
+  display: flex;
+  flex-wrap: wrap;
+
+  .project-card{
+    flex: 1;
+  }
 }
 
 </style>
