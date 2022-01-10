@@ -1,5 +1,7 @@
 import Airtable, { FieldSet } from "airtable";
 import { AirtableBase } from "airtable/lib/airtable_base";
+import { ProjectResume } from "./ProjectResume";
+import { IntroductionItem } from "./IntroductionItem";
 
 /*
 * Interface between database and frontend
@@ -20,7 +22,7 @@ export abstract class DatabaseInterface{
     * Text
     * Image
     */
-    public static GetIntroductions(data: any[]){
+    public static getIntroductions(data: any[]){
         if(data.length>0){ data = []; }
         this.database('Introduction').select({
             view: 'Grid view'
@@ -28,7 +30,13 @@ export abstract class DatabaseInterface{
             if (err) { console.error(err); return; }
             if(records){
                 records.forEach(function(record) {
-                    data.push(record.fields);
+                    data.push(
+                        new IntroductionItem(
+                            record.fields["Title"],
+                            record.fields["Text"],
+                            record.fields["Image"][0]['url'],
+                        )
+                    );
                 });
             }
         });
@@ -46,7 +54,7 @@ export abstract class DatabaseInterface{
     * Itch
     * OtherUrl
     */
-    public static GetProjectResume(data: any[], category: string){
+    public static getProjectResume(data: ProjectResume[], category: string){
         if(data.length>0){ data = []; }
         this.database('Projects').select({
             view: 'Grid view'
@@ -55,9 +63,21 @@ export abstract class DatabaseInterface{
             if(records){
                 records.forEach(function(record) {
                     if(record.fields["Category"].toString() == category){
-                        data.push(record.fields);
+                        data.push(
+                            new ProjectResume(
+                                record.fields["Name"],
+                                record.fields["idProject"],
+                                record.fields["Category"],
+                                record.fields["Description"],
+                                record.fields["Image"][0]['url'],
+                                record.fields["Github"],
+                                record.fields["Itch"],
+                                record.fields["OtherUrl"],
+                            )
+                        );
                     }
                 });
+                console.log(data);
             }
         });
     }

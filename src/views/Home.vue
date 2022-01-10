@@ -6,26 +6,26 @@
     <img src="@/assets/pictures/transition_white_red.svg">
     <div class="text-zone backgroundPrimaryColor textBrightColor">
       <div class="left-element boxShadowDarkColor-lg">
-        <h1 class="textShadowDarkColor">{{introductionArray[0]["Title"]}}</h1><br/>
-        <p>{{introductionArray[0]["Text"]}}</p>
+        <h1 class="textShadowDarkColor">{{introductionArray[0].title}}</h1><br/>
+        <p>{{introductionArray[0].text}}</p>
       </div>
-      <img class="boxShadowDarkColor-lg" :src="introductionArray[0]['Image'][0]['url']">
+      <img class="boxShadowDarkColor-lg" :src="introductionArray[0].imageUrl">
     </div>
     <img src="@/assets/pictures/transition_red_blue.svg">
     <div class="text-zone backgroundDarkColor textBrightColor">
-      <img class="left-element boxShadowSecondaryColor-lg" :src="introductionArray[1]['Image'][0]['url']">
+      <img class="left-element boxShadowSecondaryColor-lg" :src="introductionArray[1].imageUrl">
       <div class="boxShadowSecondaryColor-lg">
-        <h1 class="textShadowSecondaryColor">{{introductionArray[1]["Title"]}}</h1><br/>
-        <p>{{introductionArray[1]["Text"]}}</p>
+        <h1 class="textShadowSecondaryColor">{{introductionArray[1].title}}</h1><br/>
+        <p>{{introductionArray[1].text}}</p>
       </div>
     </div>
     <img src="@/assets/pictures/transition_blue_orange.svg">
     <div class="text-zone backgroundSecondaryColor textBrightColor">
       <div class="left-element boxShadowPrimaryColor-lg">
-        <h1 class="textShadowPrimaryColor">{{introductionArray[2]["Title"]}}</h1><br/>
-        <p class="">{{introductionArray[2]["Text"]}}</p>
+        <h1 class="textShadowPrimaryColor">{{introductionArray[2].title}}</h1><br/>
+        <p class="">{{introductionArray[2].text}}</p>
       </div>
-      <img class="boxShadowPrimaryColor-lg" :src="introductionArray[2]['Image'][0]['url']">
+      <img class="boxShadowPrimaryColor-lg" :src="introductionArray[2].imageUrl">
     </div>
   </div>
 </template>
@@ -50,7 +50,7 @@ export default defineComponent({
   },
   methods: {
     async getIntroductionData(){
-      await DatabaseInterface.GetIntroductions(this.introductionArray);
+      await DatabaseInterface.getIntroductions(this.introductionArray);
     }
   },
 });

@@ -20,14 +20,15 @@ export default defineComponent({
 
   data(){
     return {
-      projectList: []
+      projectList: [],
+      tests: [],
     }
   },
 
   methods: {
     async updateProjectList(){
       this.projectList = [];
-      await DatabaseInterface.GetProjectResume(this.projectList, this.$route.params.category);
+      await DatabaseInterface.getProjectResume(this.projectList, this.$route.params.category);
     }
   },
 

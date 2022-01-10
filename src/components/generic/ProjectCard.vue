@@ -1,29 +1,29 @@
 <template>
   <div class="project-card">
-    <img :src="projectData['Image'][0]['url']" class="pointer"/>
+    <img :src="projectData.imageUrl" class="pointer"/>
     <div class="text">
-      <h3 class="title textPrimaryColor">{{projectData['Name']}}</h3>
+      <h3 class="title textPrimaryColor">{{projectData.name}}</h3>
       <p>
-        {{projectData['Description']}}
+        {{projectData.description}}
       </p>
     </div>
     <div class="links">
       <a class="link">Voir plus -></a>
       <div class="links-project">
-        <Pin v-if="projectData['Itch']!=undefined" 
+        <Pin v-if="projectData.itch!=undefined" 
           class="boxShadowDarkColor backgroundBrightColor pointer bottom" 
           filename='itch-2.png' 
-          @click="openNewWindow(projectData['Itch'])"
+          @click="openNewWindow(projectData.itch)"
         />
-        <Pin v-if="projectData['Github']!=undefined" 
+        <Pin v-if="projectData.github!=undefined" 
           class="boxShadowDarkColor backgroundBrightColor pointer bottom" 
           filename='GitHub.png' 
-          @click="openNewWindow(projectData['Github'])"
+          @click="openNewWindow(projectData.github)"
         />
-        <Pin v-if="projectData['OtherUrl']!=undefined" 
+        <Pin v-if="projectData.otherUrl!=undefined" 
           class="boxShadowDarkColor backgroundBrightColor pointer bottom" 
           filename='link.png' 
-          @click="openNewWindow(projectData['OtherUrl'])"
+          @click="openNewWindow(projectData.otherUrl)"
         />
       </div>
     </div>
