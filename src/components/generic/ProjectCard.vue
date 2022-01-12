@@ -1,6 +1,6 @@
 <template>
   <div class="project-card">
-    <img :src="projectData.imageUrl" class="pointer"/>
+    <img :src="projectData.imageUrl" class="pointer" @click="$router.push({ name: 'Project', params: { projectId: 1 } });"/>
     <div class="text">
       <h3 class="title textPrimaryColor">{{projectData.name}}</h3>
       <p>

@@ -29,11 +29,13 @@ export default defineComponent({
     async updateProjectList(){
       this.projectList = [];
       await DatabaseInterface.getProjectResume(this.projectList, this.$route.params.category);
+      //await DatabaseInterface.getProjectDetails(this.tests, 1);
+      console.log(this.tests);
     }
   },
 
   mounted(){
-    console.log(this.$route.params.category);
+    //console.log(this.$route.params.category);
     this.updateProjectList();
   },
 

@@ -2,6 +2,7 @@ import Airtable, { FieldSet } from "airtable";
 import { AirtableBase } from "airtable/lib/airtable_base";
 import { ProjectResume } from "./ProjectResume";
 import { IntroductionItem } from "./IntroductionItem";
+import { ProjectDetail } from "./ProjectDetail";
 
 /*
 * Interface between database and frontend
@@ -66,7 +67,7 @@ export abstract class DatabaseInterface{
                         data.push(
                             new ProjectResume(
                                 record.fields["Name"],
-                                record.fields["idProject"],
+                                record.fields["ProjectId"],
                                 record.fields["Category"],
                                 record.fields["Description"],
                                 record.fields["Image"][0]['url'],
@@ -75,6 +76,41 @@ export abstract class DatabaseInterface{
                                 record.fields["OtherUrl"],
                             )
                         );
+                    }
+                });
+            }
+        });
+    }
+    
+    /*
+    * Get details of projects from "ProjectDetails" table
+    * An item (fields of the record gotten) is composed of : 
+    * Part
+    * ProjectId
+    * Position
+    * Content
+    * Image
+    */
+    public static getProjectDetails(data: ProjectDetail[], projectId: number){
+        if(data.length>0){ data = []; }
+        this.database('ProjectDetails').select({
+            view: 'Grid view'
+        }).firstPage(function(err, records) {
+            if (err) { console.error(err); return; }
+            if(records){
+                records.forEach(function(record) {
+                    if(record.fields["ProjectId"] == projectId){
+                        let projectDetail: ProjectDetail = new ProjectDetail(
+                            record.fields["Part"],
+                            record.fields["ProjectId"],
+                            record.fields["Position"],
+                            record.fields["Content"],
+                            undefined,
+                        );
+
+                        if(record.fields["Image"]){ projectDetail.imageUrl = record.fields["Image"][0]['url']; }
+                        
+                        data.push(projectDetail);
                     }
                 });
                 console.log(data);

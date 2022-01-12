@@ -60,12 +60,12 @@ export default defineComponent({
     return {
       //Liste des navigations possibles dans la Top navbar
       navItems: [
-        new NavItem("GameDesign", () => {
-          this.$router.push("Gamedesign");
+        new NavItem("Gamedesign", () => {
+          this.$router.push({ name: 'ProjectList', params: { category: "Gamedesign" } });
           this.setShowElements(false);
         }),
         new NavItem("Programmation", () => {
-          this.$router.push("Programmation");
+          this.$router.push({ name: 'ProjectList', params: { category: "Programmation" } });
           this.setShowElements(false);
         }),
       ],
