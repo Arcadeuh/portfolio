@@ -47,7 +47,7 @@ export abstract class DatabaseInterface{
     * Get resumes of projects from "Projects" table
     * An item (fields of the record gotten) is composed of : 
     * Name
-    * idProject
+    * ProjectId
     * Category
     * Description
     * Image
@@ -55,7 +55,7 @@ export abstract class DatabaseInterface{
     * Itch
     * OtherUrl
     */
-    public static getProjectResume(data: ProjectResume[], category: string){
+    public static getProjectsResume(data: ProjectResume[], category: string){
         if(data.length>0){ data = []; }
         this.database('Projects').select({
             view: 'Grid view'
@@ -81,6 +81,57 @@ export abstract class DatabaseInterface{
             }
         });
     }
+
+    public static getProjectResume(data: ProjectResume, projectId: number){
+        this.database('Projects').select({
+            view: 'Grid view'
+        }).firstPage(function(err, records) {
+            if (err) { console.error(err); return; }
+            if(records){
+                records.forEach(function(record) {
+                    if(record.fields["ProjectId"] == projectId){
+                        console.log("there");
+                        data = new ProjectResume(
+                            record.fields["Name"],
+                            record.fields["ProjectId"],
+                            record.fields["Category"],
+                            record.fields["Description"],
+                            record.fields["Image"][0]['url'],
+                            record.fields["Github"],
+                            record.fields["Itch"],
+                            record.fields["OtherUrl"],
+                        );
+                    }
+                });
+            }
+        });
+    }
+
+    
+    public static testGetProjectResume(selfReference: any, projectId: number){
+        this.database('Projects').select({
+            view: 'Grid view'
+        }).firstPage(function(err, records) {
+            if (err) { console.error(err); return; }
+            if(records){
+                records.forEach(function(record) {
+                    if(record.fields["ProjectId"] == projectId){
+                        selfReference.projectResume = new ProjectResume(
+                            record.fields["Name"],
+                            record.fields["ProjectId"],
+                            record.fields["Category"],
+                            record.fields["Description"],
+                            record.fields["Image"][0]['url'],
+                            record.fields["Github"],
+                            record.fields["Itch"],
+                            record.fields["OtherUrl"],
+                        );
+                    }
+                });
+            }
+        });
+    }
+    
     
     /*
     * Get details of projects from "ProjectDetails" table

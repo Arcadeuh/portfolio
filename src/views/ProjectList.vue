@@ -1,6 +1,6 @@
 <template>
   <div class="list">
-      <ProjectCard v-for="project in projectList" :key="project" class="project-card" :projectData="project"/>
+      <ProjectCard v-for="project in projectList" :key="project" class="project-card" :projectResume="project"/>
   </div>
 </template>
 
@@ -21,16 +21,13 @@ export default defineComponent({
   data(){
     return {
       projectList: [],
-      tests: [],
     }
   },
 
   methods: {
     async updateProjectList(){
       this.projectList = [];
-      await DatabaseInterface.getProjectResume(this.projectList, this.$route.params.category);
-      //await DatabaseInterface.getProjectDetails(this.tests, 1);
-      console.log(this.tests);
+      await DatabaseInterface.getProjectsResume(this.projectList, this.$route.params.category);
     }
   },
 

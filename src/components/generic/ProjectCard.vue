@@ -1,29 +1,29 @@
 <template>
   <div class="project-card">
-    <img :src="projectData.imageUrl" class="pointer" @click="$router.push({ name: 'Project', params: { projectId: 1 } });"/>
+    <img :src="projectResume.imageUrl" class="pointer" @click="$router.push({ name: 'Project', params: { projectId: projectResume.projectId } });"/>
     <div class="text">
-      <h3 class="title textPrimaryColor">{{projectData.name}}</h3>
+      <h3 class="title textPrimaryColor">{{projectResume.name}}</h3>
       <p>
-        {{projectData.description}}
+        {{projectResume.description}}
       </p>
     </div>
     <div class="links">
-      <a class="link">Voir plus -></a>
+      <a class="link" @click="$router.push({ name: 'Project', params: { projectId: projectResume.projectId } });">Voir plus -></a>
       <div class="links-project">
-        <Pin v-if="projectData.itch!=undefined" 
+        <Pin v-if="projectResume.itch!=undefined" 
           class="boxShadowDarkColor backgroundBrightColor pointer bottom" 
           filename='itch-2.png' 
-          @click="openNewWindow(projectData.itch)"
+          @click="openNewWindow(projectResume.itch)"
         />
-        <Pin v-if="projectData.github!=undefined" 
+        <Pin v-if="projectResume.github!=undefined" 
           class="boxShadowDarkColor backgroundBrightColor pointer bottom" 
           filename='GitHub.png' 
-          @click="openNewWindow(projectData.github)"
+          @click="openNewWindow(projectResume.github)"
         />
-        <Pin v-if="projectData.otherUrl!=undefined" 
+        <Pin v-if="projectResume.otherUrl!=undefined" 
           class="boxShadowDarkColor backgroundBrightColor pointer bottom" 
           filename='link.png' 
-          @click="openNewWindow(projectData.otherUrl)"
+          @click="openNewWindow(projectResume.otherUrl)"
         />
       </div>
     </div>
@@ -44,7 +44,7 @@ export default defineComponent({
   },
 
   /*
-  * ProjectData is composed of : 
+  * projectResume is composed of : 
   * Name
   * idProject
   * Category
@@ -54,7 +54,7 @@ export default defineComponent({
   * Itch
   * OtherUrl
   */
-  props: ['projectData'],
+  props: ['projectResume'],//ProjectResume
 
   data(){
 
