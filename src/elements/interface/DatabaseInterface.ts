@@ -90,7 +90,6 @@ export abstract class DatabaseInterface{
             if(records){
                 records.forEach(function(record) {
                     if(record.fields["ProjectId"] == projectId){
-                        console.log("there");
                         data = new ProjectResume(
                             record.fields["Name"],
                             record.fields["ProjectId"],

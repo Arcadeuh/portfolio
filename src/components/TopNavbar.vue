@@ -19,7 +19,7 @@
 
     <!--Navigation principale, cachée quand sur petit écran-->
     <div :class="{'hiddenOnShrink': !showElements, 'Navbar': true}">
-      <Navbar :navItems="navItems"/>
+      <Navbar :navItems="navItems" :color="0" :shadowColor="1"/>
     </div>
 
     <!--Contact, cachés quand sur petit écran-->

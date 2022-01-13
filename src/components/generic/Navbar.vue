@@ -1,20 +1,37 @@
 <template>
-    <div class="list">
+    <div :class="{'list': true, 'textDarkColor': color==1, 'textBrightColor': color==0 || color==undefined}">
         <!--div id="first-element">&#160;</div-->
         <div style="width: 100%; height: 100%; display: flex; align-items: center;" v-for="(navItem, index) in navItems" :key="navItem">
             <!-- Ceci permet de mettre un separator au début de la navbar -->
-            <div v-if="index==0" class="separator">&#160;</div>
+            <div v-if="index==0" 
+            :class="{'separator': true, 'backgroundDarkColor': color==1, 
+            'backgroundBrightColor': color==0 || color==undefined}">
+                &#160;
+            </div>
             <!-- Créé un separator quand l'écran est petit, et que la navbar est en colonne (via showOnShrink) -->
-            <div v-else class="separator showOnShrink">&#160;</div>
+            <div v-else 
+            :class="{'separator showOnShrink': true, 'backgroundDarkColor': color==1, 
+            'backgroundBrightColor': color==0 || color==undefined}">
+                &#160;
+            </div>
             <div class="list-item"  
                 v-on:click="navItem.callback();setSelected(navItems, navItem);" 
                 @mouseenter="setMouseOver(navItem, true)" 
                 @mouseleave="setMouseOver(navItem, false)"
-                :class="{ 'textShadowSecondaryColor': (navItem.selected && !mouseOverIt) || navItem.mouseOver, 'backgroundSecondaryColor': navItem.selected }"
+                :class="{ 
+                    'textShadowSecondaryColor': ((navItem.selected && !mouseOverIt) || navItem.mouseOver) && shadowColor==1, 
+                    'backgroundSecondaryColor': navItem.selected && shadowColor==1,
+                    'textShadowPrimaryColor': ((navItem.selected && !mouseOverIt) || navItem.mouseOver) && (shadowColor==0 || shadowColor==undefined), 
+                    'backgroundPrimaryColor': navItem.selected && (shadowColor==0 || shadowColor==undefined),
+                }"
             ><!-- item de navigation  -->
                 {{navItem.name}}
             </div>
-            <div class="separator">&#160;</div>
+            <div 
+            :class="{'separator': true, 'backgroundDarkColor': color==1, 
+            'backgroundBrightColor': color==0 || color==undefined}">
+                &#160;
+            </div>
         </div>
         
     </div>
@@ -28,7 +45,12 @@ import { NavItem } from '@/elements/objects/NavItem'
 
 export default defineComponent({
     name: 'Navbar',
-    props: ['navItems'],
+    /* 
+    *  navItems : list on NavItem
+    *  color : integer, color of separators and text. Can have 2 value : 0 for $brightColor, 1 for $darkColor
+    *  shadowColor : integer, color of text shadow. Can have 2 value : 0 for $primary, 1 for $secondary
+    */
+    props: ['navItems', 'color', 'shadowColor'],
 
     data(){
         return {
@@ -49,6 +71,10 @@ export default defineComponent({
             });
             navItem.selected = true;
         }
+    },
+
+    mounted(){
+        console.log(this.mouseOverIt);
     }
 
 })
@@ -68,7 +94,7 @@ export default defineComponent({
     justify-content: space-between;
     width: 100%;
     height: 100%;
-    color: variables.$brightColor;
+    //color: variables.$brightColor;
     //flex-wrap: wrap;
     user-select:none;
 
@@ -87,7 +113,7 @@ export default defineComponent({
     }
 
     .separator{
-        background-color: variables.$brightColor;
+        //background-color: variables.$brightColor;
         width: 5px;
         height: 50%;
     }
