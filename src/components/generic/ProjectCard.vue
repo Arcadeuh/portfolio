@@ -11,17 +11,17 @@
       <a class="link" @click="$router.push({ name: 'Project', params: { projectId: projectResume.projectId } });">Voir plus -></a>
       <div class="links-project">
         <Pin v-if="projectResume.itch!=undefined" 
-          class="boxShadowDarkColor backgroundBrightColor pointer bottom" 
+          class="boxShadowDarkColor backgroundBrightColor pointer" 
           filename='itch-2.png' 
           @click="openNewWindow(projectResume.itch)"
         />
         <Pin v-if="projectResume.github!=undefined" 
-          class="boxShadowDarkColor backgroundBrightColor pointer bottom" 
+          class="boxShadowDarkColor backgroundBrightColor pointer" 
           filename='GitHub.png' 
           @click="openNewWindow(projectResume.github)"
         />
         <Pin v-if="projectResume.otherUrl!=undefined" 
-          class="boxShadowDarkColor backgroundBrightColor pointer bottom" 
+          class="boxShadowDarkColor backgroundBrightColor pointer" 
           filename='link.png' 
           @click="openNewWindow(projectResume.otherUrl)"
         />

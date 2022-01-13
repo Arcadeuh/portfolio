@@ -102,8 +102,38 @@ Donne des classes génériques, réutilisables, valable au sein de ce projet
 }
 
 .bottom{
-    //position:relative;
+    position:absolute;
     bottom: 0;
+}
+
+.left{
+    position:absolute;
+    left: 0;
+}
+
+.right{
+    position:absolute;
+    right: 0;
+}
+
+.center{
+    position:absolute;
+    right: 50%;
+    top: 50%;
+    left: 50%;
+    bottom: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.center-vertically{
+    position:absolute;
+    top: 50%;
+    bottom: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .link{
