@@ -121,7 +121,7 @@ export abstract class DatabaseInterface{
     
     
     /*
-    * Get details of projects from "ProjectDetails" table
+    * Get details of a project from "ProjectDetails" table
     * An item (fields of the record gotten) is composed of : 
     * Part
     * ProjectId
@@ -129,7 +129,7 @@ export abstract class DatabaseInterface{
     * Content
     * Image
     */
-    public static async getPostDetails(data: PostDetail[], postId?: number){
+    public static async getPostDetails(data: PostDetail[], postId: number){
         if(data.length>0){ data = []; }
         return new Promise((resolve, reject)=>{
             this.database('PostDetails').select({
@@ -137,25 +137,8 @@ export abstract class DatabaseInterface{
             }).firstPage(function(err, records) {
                 if (err) { console.error(err); return; }
                 if(records){
-
-                    if(postId){
-                        records.forEach(function(record) {
-                            //Si 
-                            if(record.fields["PostId"] == postId){
-                                let projectDetail: PostDetail = new PostDetail(
-                                    record.fields["Part"],
-                                    record.fields["PostId"],
-                                    record.fields["Position"],
-                                    record.fields["Content"],
-                                    undefined,
-                                );
-                                if(record.fields["Image"]){ projectDetail.imageUrl = record.fields["Image"][0]['url']; }
-                                data.push(projectDetail);
-                            }
-                        });
-                    }
-                    else{
-                        records.forEach(function(record) {
+                    records.forEach(function(record) {
+                        if(record.fields["PostId"] == postId){
                             let projectDetail: PostDetail = new PostDetail(
                                 record.fields["Part"],
                                 record.fields["PostId"],
@@ -165,9 +148,8 @@ export abstract class DatabaseInterface{
                             );
                             if(record.fields["Image"]){ projectDetail.imageUrl = record.fields["Image"][0]['url']; }
                             data.push(projectDetail);
-                        });
-                    }
-                    console.log(data);
+                        }
+                    });
                 }
             });
             setTimeout(resolve, 500);

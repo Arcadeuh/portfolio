@@ -27,7 +27,12 @@
       </div>
     </div>
     <div class="content">
-      <div v-for="postDetail in postDetails" :key="postDetail">{{postDetail.content}}</div>
+      <div v-for="postDetail in postDetails" :key="postDetail">
+        <div v-if="postDetail.part == partToDisplay" class="post-detail">
+            <p>{{postDetail.content}}</p><br v-if="postDetail.imageUrl"/>
+            <img class="boxShadowPrimaryColor-lg" v-if="postDetail.imageUrl" :src="postDetail.imageUrl"/>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -51,9 +56,10 @@ export default defineComponent({
 
   data(){
     return {
-      projectResume: null,
-      postDetails: [] as PostDetail[],
-      navItems: [] as NavItem[]
+      projectResume: null, //From database : contains verything in resumed about the project
+      postDetails: [] as PostDetail[], //From database : containes every bit of details about the project (an item is a texte and a potential image)
+      navItems: [] as NavItem[], //Element of navigation inside the navbar. Permits to show one particular part of the project
+      partToDisplay: null //Correspond to a postDetails.part wanted to show
     }
   },
 
@@ -72,11 +78,19 @@ export default defineComponent({
           });
 
           if(!exists){
+            let navItem = new NavItem(detail.part);
+            navItem.callback = ()=>{
+              this.partToDisplay = navItem.name;
+              console.log(this.partToDisplay);
+            };
             this.navItems.push(
-              new NavItem(detail.part, ()=>{
-                console.log("HA !");
-              })
+              navItem
             );
+          }
+
+          if(!this.partToDisplay){
+            this.partToDisplay = this.navItems[this.navItems.length-1].name;
+            this.navItems[this.navItems.length-1].selected = true;
           }
 
         });
@@ -158,6 +172,17 @@ export default defineComponent({
   .content{
     margin-left: 30%;
     margin-right: 30%;
+
+    .post-detail{
+      margin-top: 20px;
+      margin-bottom: 20px;
+      text-align: justify;
+
+      img{
+        width: 100%;
+        border: 5px solid variables.$darkColor;
+      }
+    }
   }
 
 }
@@ -175,6 +200,10 @@ export default defineComponent({
 @media screen and (max-width: variables.$sm) {
   .project{
     .header{
+      .navbar{
+        height: unset;
+
+      }
       .image{
         .title{
           font-size: 25px;
