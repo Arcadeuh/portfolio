@@ -61,24 +61,17 @@ export default defineComponent({
     updateProjectDetails(){
       this.projectDetails = [];
       DatabaseInterface.getProjectDetails(this.projectDetails, this.$route.params.projectId).then(()=>{
-
-        console.log("BEFORE");
         //Adding navigation items for each part of the project
         this.projectDetails.forEach(detail => {
           let exists = false;
-          console.log("ZERO");
 
           this.navItems.forEach(item => {
-            console.log("ONE");
             if(detail.part == item.name){
               exists = true;
             }
           });
 
-          console.log("TWO");
-
           if(!exists){
-            console.log("THREE");
             this.navItems.push(
               new NavItem(detail.part, ()=>{
                 console.log("HA !");
@@ -87,15 +80,14 @@ export default defineComponent({
           }
 
         });
-        console.log("AFTER");
       });
       
     },
 
-    async updateProjectResume(){
+    updateProjectResume(){
       this.projectResume = null;
       let self = this;
-      await DatabaseInterface.getProjectResume(self, this.$route.params.projectId);
+      DatabaseInterface.getProjectResume(self, this.$route.params.projectId);
     },
     
     openNewWindow(url: string){
@@ -168,6 +160,16 @@ export default defineComponent({
     margin-right: 30%;
   }
 
+}
+
+@media screen and (max-width: variables.$md) {
+  .project{
+
+    .content{
+      margin-left: 25%;
+      margin-right: 25%;
+    }
+  }
 }
 
 @media screen and (max-width: variables.$sm) {

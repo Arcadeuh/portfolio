@@ -25,9 +25,9 @@ export default defineComponent({
   },
 
   methods: {
-    async updateProjectList(){
+    updateProjectList(){
       this.projectList = [];
-      await DatabaseInterface.getProjectsResume(this.projectList, this.$route.params.category);
+      DatabaseInterface.getProjectsResume(this.projectList, this.$route.params.category);
     }
   },
 

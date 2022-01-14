@@ -49,8 +49,8 @@ export default defineComponent({
     this.getIntroductionData();
   },
   methods: {
-    async getIntroductionData(){
-      await DatabaseInterface.getIntroductions(this.introductionArray);
+    getIntroductionData(){
+      DatabaseInterface.getIntroductions(this.introductionArray);
     }
   },
 });
