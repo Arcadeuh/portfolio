@@ -22,7 +22,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/project/:projectId',
     name: 'Project',
-    component: Project,
+    component: Project
   }
   /*
   {

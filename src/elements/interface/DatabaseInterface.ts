@@ -2,7 +2,7 @@ import Airtable, { FieldSet } from "airtable";
 import { AirtableBase } from "airtable/lib/airtable_base";
 import { ProjectResume } from "./ProjectResume";
 import { IntroductionItem } from "./IntroductionItem";
-import { ProjectDetail } from "./ProjectDetail";
+import { PostDetail } from "./PostDetail";
 
 /*
 * Interface between database and frontend
@@ -129,38 +129,44 @@ export abstract class DatabaseInterface{
     * Content
     * Image
     */
-    public static async getProjectDetails(data: ProjectDetail[], projectId?: number){
+    public static async getPostDetails(data: PostDetail[], postId?: number){
         if(data.length>0){ data = []; }
         return new Promise((resolve, reject)=>{
-            this.database('ProjectDetails').select({
+            this.database('PostDetails').select({
                 view: 'Grid view'
             }).firstPage(function(err, records) {
                 if (err) { console.error(err); return; }
                 if(records){
-                    records.forEach(function(record) {
-                        if(projectId && record.fields["ProjectId"] == projectId){
-                            let projectDetail: ProjectDetail = new ProjectDetail(
+
+                    if(postId){
+                        records.forEach(function(record) {
+                            //Si 
+                            if(record.fields["PostId"] == postId){
+                                let projectDetail: PostDetail = new PostDetail(
+                                    record.fields["Part"],
+                                    record.fields["PostId"],
+                                    record.fields["Position"],
+                                    record.fields["Content"],
+                                    undefined,
+                                );
+                                if(record.fields["Image"]){ projectDetail.imageUrl = record.fields["Image"][0]['url']; }
+                                data.push(projectDetail);
+                            }
+                        });
+                    }
+                    else{
+                        records.forEach(function(record) {
+                            let projectDetail: PostDetail = new PostDetail(
                                 record.fields["Part"],
-                                record.fields["ProjectId"],
+                                record.fields["PostId"],
                                 record.fields["Position"],
                                 record.fields["Content"],
                                 undefined,
                             );
                             if(record.fields["Image"]){ projectDetail.imageUrl = record.fields["Image"][0]['url']; }
                             data.push(projectDetail);
-                        }
-                        else if (!projectId){
-                            let projectDetail: ProjectDetail = new ProjectDetail(
-                                record.fields["Part"],
-                                record.fields["ProjectId"],
-                                record.fields["Position"],
-                                record.fields["Content"],
-                                undefined,
-                            );
-                            if(record.fields["Image"]){ projectDetail.imageUrl = record.fields["Image"][0]['url']; }
-                            data.push(projectDetail);
-                        }
-                    });
+                        });
+                    }
                     console.log(data);
                 }
             });

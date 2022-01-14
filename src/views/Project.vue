@@ -27,7 +27,7 @@
       </div>
     </div>
     <div class="content">
-      <div v-for="projectDetail in projectDetails" :key="projectDetail">{{projectDetail.content}}</div>
+      <div v-for="postDetail in postDetails" :key="postDetail">{{postDetail.content}}</div>
     </div>
   </div>
 </template>
@@ -39,7 +39,7 @@ import { defineComponent } from "vue";
 import { DatabaseInterface } from '@/elements/interface/DatabaseInterface';
 import { GenericMethods } from "@/elements/GenericMethods";
 import { NavItem } from "@/elements/objects/NavItem";
-import { ProjectDetail } from "@/elements/interface/ProjectDetail";
+import { PostDetail } from "@/elements/interface/PostDetail";
 
 export default defineComponent({
   name: 'Project',
@@ -52,17 +52,17 @@ export default defineComponent({
   data(){
     return {
       projectResume: null,
-      projectDetails: [] as ProjectDetail[],
+      postDetails: [] as PostDetail[],
       navItems: [] as NavItem[]
     }
   },
 
   methods: {
-    updateProjectDetails(){
-      this.projectDetails = [];
-      DatabaseInterface.getProjectDetails(this.projectDetails, this.$route.params.projectId).then(()=>{
+    updatePostDetails(){
+      this.postDetails = [];
+      DatabaseInterface.getPostDetails(this.postDetails, this.$route.params.projectId).then(()=>{
         //Adding navigation items for each part of the project
-        this.projectDetails.forEach(detail => {
+        this.postDetails.forEach(detail => {
           let exists = false;
 
           this.navItems.forEach(item => {
@@ -97,7 +97,7 @@ export default defineComponent({
   },
 
   mounted(){
-    this.updateProjectDetails();
+    this.updatePostDetails();
     this.updateProjectResume();
   },
 
