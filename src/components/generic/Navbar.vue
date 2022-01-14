@@ -21,8 +21,8 @@
                 :class="{ 
                     'textShadowSecondaryColor': ((navItem.selected && !mouseOverIt) || navItem.mouseOver) && shadowColor==1, 
                     'backgroundSecondaryColor': navItem.selected && shadowColor==1,
-                    'textShadowPrimaryColor': ((navItem.selected && !mouseOverIt) || navItem.mouseOver) && (shadowColor==0 || shadowColor==undefined), 
-                    'backgroundPrimaryColor': navItem.selected && (shadowColor==0 || shadowColor==undefined),
+                    'textShadowPrimaryColor': ((navItem.selected && !mouseOverIt) || navItem.mouseOver) && (shadowColor==0 || shadowColor==undefined || shadowColor>1), 
+                    'backgroundPrimaryColor': navItem.selected && (shadowColor==0 || shadowColor==undefined || shadowColor>1),
                 }"
             ><!-- item de navigation  -->
                 {{navItem.name}}
@@ -115,7 +115,7 @@ export default defineComponent({
     .separator{
         //background-color: variables.$brightColor;
         width: 5px;
-        height: 50%;
+        height: 30px;
     }
 
     .showOnShrink{

@@ -1,27 +1,29 @@
 <template>
   <div class="project">
     <div class="header">
-      <img v-if="projectResume" class="main-image" :src="projectResume.imageUrl"/>
-      <div v-if="projectResume" class="center-vertically title textShadowPrimaryColor">{{projectResume.name}}</div>
-      <div v-if="projectResume" class="bottom right links">
-        <Pin v-if="projectResume.itch!=undefined" 
-          class="boxShadowDarkColor backgroundBrightColor pointer" 
-          filename='itch-2.png' 
-          @click="openNewWindow(projectResume.itch)"
-        />
-        <Pin v-if="projectResume.github!=undefined" 
-          class="boxShadowDarkColor backgroundBrightColor pointer" 
-          filename='GitHub.png' 
-          @click="openNewWindow(projectResume.github)"
-        />
-        <Pin v-if="projectResume.otherUrl!=undefined" 
-          class="boxShadowDarkColor backgroundBrightColor pointer" 
-          filename='link.png' 
-          @click="openNewWindow(projectResume.otherUrl)"
-        />
+      <div class="image">
+        <img v-if="projectResume" class="main-image" :src="projectResume.imageUrl"/>
+        <div v-if="projectResume" class="center-vertically title textShadowPrimaryColor">{{projectResume.name}}</div>
+        <div v-if="projectResume" class="bottom right links">
+          <Pin v-if="projectResume.itch!=undefined" 
+            class="boxShadowDarkColor backgroundBrightColor pointer" 
+            filename='itch-2.png' 
+            @click="openNewWindow(projectResume.itch)"
+          />
+          <Pin v-if="projectResume.github!=undefined" 
+            class="boxShadowDarkColor backgroundBrightColor pointer" 
+            filename='GitHub.png' 
+            @click="openNewWindow(projectResume.github)"
+          />
+          <Pin v-if="projectResume.otherUrl!=undefined" 
+            class="boxShadowDarkColor backgroundBrightColor pointer" 
+            filename='link.png' 
+            @click="openNewWindow(projectResume.otherUrl)"
+          />
+        </div>
       </div>
       <div class="navbar">
-        <Navbar :navItems="navItems" :color="1" :shadowColor="0"/>
+        <Navbar :navItems="navItems" :color="1" :shadowColor="1"/>
       </div>
     </div>
     <div class="content">
@@ -51,60 +53,49 @@ export default defineComponent({
     return {
       projectResume: null,
       projectDetails: [] as ProjectDetail[],
-      navItems: [
-        new NavItem("BEUBEU", () => {
-          console.log("NIQUE");
-        }),
-        new NavItem("BEUBEU", () => {
-          console.log("NIQUE");
-        }),
-        new NavItem("BEUBEU", () => {
-          console.log("NIQUE");
-        }),
-        new NavItem("BEUBEU", () => {
-          console.log("NIQUE");
-        }),
-      ]
+      navItems: [] as NavItem[]
     }
   },
 
   methods: {
-    async updateProjectDetails(){
+    updateProjectDetails(){
       this.projectDetails = [];
-      await DatabaseInterface.getProjectDetails(this.projectDetails, this.$route.params.projectId);
-      /*
-      this.projectDetails.forEach(detail => {
-        if(this.navItems.length==0){ 
+      DatabaseInterface.getProjectDetails(this.projectDetails, this.$route.params.projectId).then(()=>{
 
-          this.navItems.push(
-            new NavItem(detail.part, ()=>{
-              console.log(detail);
-            })
-          );
-        }
-        else{
+        console.log("BEFORE");
+        //Adding navigation items for each part of the project
+        this.projectDetails.forEach(detail => {
           let exists = false;
+          console.log("ZERO");
+
           this.navItems.forEach(item => {
+            console.log("ONE");
             if(detail.part == item.name){
               exists = true;
             }
           });
+
+          console.log("TWO");
+
           if(!exists){
+            console.log("THREE");
             this.navItems.push(
               new NavItem(detail.part, ()=>{
-                console.log(detail);
+                console.log("HA !");
               })
             );
           }
-        }
+
+        });
+        console.log("AFTER");
       });
-      */
+      
     },
 
     async updateProjectResume(){
       this.projectResume = null;
       let self = this;
-      await DatabaseInterface.testGetProjectResume(self, this.$route.params.projectId);
+      await DatabaseInterface.getProjectResume(self, this.$route.params.projectId);
     },
     
     openNewWindow(url: string){
@@ -136,33 +127,39 @@ export default defineComponent({
 .project{
 
   .header{
-    position: relative;
     width: 80%;
     margin: auto;
-    border: 5px solid variables.$darkColor;
 
-    .links{
-      &>*{
-        width: 50px;
-        height: 50px;
-        margin: 5px;
+    .navbar{
+      margin: auto;
+      height: 50px;
+      border-bottom: 5px solid variables.$darkColor;
+    }
+
+    .image{
+      position: relative;
+      border: 5px solid variables.$darkColor;
+
+      .links{
+        &>*{
+          width: 50px;
+          height: 50px;
+          margin: 5px;
+        }
       }
-    }
 
-    .title{
-      font-family: 'Bungee';
-      font-size: 50px;
-      width: 100%;
-    }
+      .title{
+        font-family: 'Bungee';
+        font-size: 50px;
+        width: 100%;
+      }
 
-    .main-image{
-      width: 100%;
-      filter: blur(5px);
-      display: flex;
-      justify-content: center;
-    }
-    &>*{
-      //position: absolute;
+      .main-image{
+        width: 100%;
+        filter: blur(5px);
+        display: flex;
+        justify-content: center;
+      }
     }
   }
 
@@ -171,20 +168,31 @@ export default defineComponent({
     margin-right: 30%;
   }
 
-  .navbar{
-    border-top: 5px solid variables.$darkColor;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-  }
-
 }
 
 @media screen and (max-width: variables.$sm) {
   .project{
     .header{
-      .title{
-        font-size: 30px;
+      .image{
+        .title{
+          font-size: 25px;
+        }
+      }
+    }
+
+    .content{
+      margin-left: 15%;
+      margin-right: 15%;
+    }
+  }
+}
+@media screen and (max-width: variables.$xs) {
+  .project{
+    .header{
+      .image{
+        .title{
+          font-size: 20px;
+        }
       }
     }
   }

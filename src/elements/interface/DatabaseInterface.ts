@@ -82,32 +82,8 @@ export abstract class DatabaseInterface{
         });
     }
 
-    public static getProjectResume(data: ProjectResume, projectId: number){
-        this.database('Projects').select({
-            view: 'Grid view'
-        }).firstPage(function(err, records) {
-            if (err) { console.error(err); return; }
-            if(records){
-                records.forEach(function(record) {
-                    if(record.fields["ProjectId"] == projectId){
-                        data = new ProjectResume(
-                            record.fields["Name"],
-                            record.fields["ProjectId"],
-                            record.fields["Category"],
-                            record.fields["Description"],
-                            record.fields["Image"][0]['url'],
-                            record.fields["Github"],
-                            record.fields["Itch"],
-                            record.fields["OtherUrl"],
-                        );
-                    }
-                });
-            }
-        });
-    }
-
     
-    public static testGetProjectResume(selfReference: any, projectId: number){
+    public static getProjectResume(selfReference: any, projectId: number){
         this.database('Projects').select({
             view: 'Grid view'
         }).firstPage(function(err, records) {
@@ -141,31 +117,35 @@ export abstract class DatabaseInterface{
     * Content
     * Image
     */
-    public static getProjectDetails(data: ProjectDetail[], projectId: number){
-        if(data.length>0){ data = []; }
-        this.database('ProjectDetails').select({
-            view: 'Grid view'
-        }).firstPage(function(err, records) {
-            if (err) { console.error(err); return; }
-            if(records){
-                records.forEach(function(record) {
-                    if(record.fields["ProjectId"] == projectId){
-                        let projectDetail: ProjectDetail = new ProjectDetail(
-                            record.fields["Part"],
-                            record.fields["ProjectId"],
-                            record.fields["Position"],
-                            record.fields["Content"],
-                            undefined,
-                        );
+    public static async getProjectDetails(data: ProjectDetail[], projectId: number){
+        return new Promise((resolve, reject)=>{
+            if(data.length>0){ data = []; }
+            this.database('ProjectDetails').select({
+                view: 'Grid view'
+            }).firstPage(function(err, records) {
+                if (err) { console.error(err); return; }
+                if(records){
+                    records.forEach(function(record) {
+                        if(record.fields["ProjectId"] == projectId){
+                            let projectDetail: ProjectDetail = new ProjectDetail(
+                                record.fields["Part"],
+                                record.fields["ProjectId"],
+                                record.fields["Position"],
+                                record.fields["Content"],
+                                undefined,
+                            );
 
-                        if(record.fields["Image"]){ projectDetail.imageUrl = record.fields["Image"][0]['url']; }
-                        
-                        data.push(projectDetail);
-                    }
-                });
-                console.log(data);
-            }
+                            if(record.fields["Image"]){ projectDetail.imageUrl = record.fields["Image"][0]['url']; }
+                            
+                            data.push(projectDetail);
+                        }
+                    });
+                    console.log(data);
+                }
+            });
+            setTimeout(resolve, 200);
         });
+        
     }
 
 }
