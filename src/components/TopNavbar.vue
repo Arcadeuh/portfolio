@@ -47,6 +47,8 @@ import Navbar from '@/components/generic/Navbar.vue';
 import { defineComponent } from 'vue';
 import { NavItem } from '@/elements/objects/NavItem';
 import {GenericMethods} from '@/elements/GenericMethods';
+import { DatabaseInterface } from '@/elements/interface/DatabaseInterface';
+import { ProjectResume } from '@/elements/interface/ProjectResume';
 
 export default defineComponent({
   name: 'TopNavbar',
@@ -59,20 +61,39 @@ export default defineComponent({
   data(){
     return {
       //Liste des navigations possibles dans la Top navbar
-      navItems: [
-        new NavItem("Gamedesign", () => {
-          this.$router.push({ name: 'ProjectList', params: { category: "Gamedesign" } });
-          this.setShowElements(false);
-        }),
-        new NavItem("Programmation", () => {
-          this.$router.push({ name: 'ProjectList', params: { category: "Programmation" } });
-          this.setShowElements(false);
-        }),
-      ],
+      navItems: [] as NavItem[],
+
+      projectsResume: [] as ProjectResume[],
 
       //Boolean qui permet de savoir si la top navbar est ouverte ou pas
       showElements: false
     }
+  },
+
+  mounted(){
+    DatabaseInterface.getAllProjectsResume(this.projectsResume).then(()=>{
+      //Creates every navigation un function of categories (projectResume.category)
+      this.projectsResume.forEach((element: ProjectResume) => {
+        let exists = false;
+
+          this.navItems.forEach(item => {
+            if(element.category == item.name){
+              exists = true;
+            }
+          });
+
+          if(!exists){
+            let navItem = new NavItem(element.category);
+            navItem.callback = ()=>{
+              this.$router.push({ name: 'ProjectList', params: { category: navItem.name } });
+              this.setShowElements(false);
+            };
+            this.navItems.push(
+              navItem
+            );
+          }
+      });
+    });
   },
 
   methods: {

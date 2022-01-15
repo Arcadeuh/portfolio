@@ -89,6 +89,34 @@ export abstract class DatabaseInterface{
         })
     }
 
+    public static async getAllProjectsResume(data: ProjectResume[]){
+        if(data.length>0){ data = []; }
+        return new Promise((resolve, reject)=>{
+            this.database('Projects').select({
+                view: 'Grid view'
+            }).firstPage(function(err, records) {
+                if (err) { console.error(err); return; }
+                if(records){
+                    records.forEach(function(record) {
+                        data.push(
+                            new ProjectResume(
+                                record.fields["Name"],
+                                record.fields["ProjectId"],
+                                record.fields["Category"],
+                                record.fields["Description"],
+                                record.fields["Image"][0]['url'],
+                                record.fields["Github"],
+                                record.fields["Itch"],
+                                record.fields["OtherUrl"],
+                            )
+                        );
+                    });
+                }
+            });
+            setTimeout(resolve, 500);
+        })
+    }
+
     /*
     * selfReference doit contenir un paramètre "projectResume"
     */
