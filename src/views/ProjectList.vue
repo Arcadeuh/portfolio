@@ -50,12 +50,33 @@ export default defineComponent({
 @use '@/assets/styles/variables.scss' as variables;
 
 .list{
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  //grid-gap: 10px;
+  margin: 0 auto;
+  grid-template-columns: repeat(3, 1fr);
 
   .project-card{
     flex: 1;
   }
 }
+
+@media screen and (max-width: variables.$md){
+  .list{
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: variables.$sm){
+  .list{
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+/*
+@media screen and (max-width: variables.$xs){
+  .list{
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+*/
 
 </style>
