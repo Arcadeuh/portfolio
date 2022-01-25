@@ -123,7 +123,7 @@ export default defineComponent({
     }
 }
 
-@media screen and (max-width: variables.$xs) {
+@media screen and (max-width: variables.$sm) {
     //S'organise en colonne lorsque l'écran est très petit
     .list{
         flex-direction: column;
