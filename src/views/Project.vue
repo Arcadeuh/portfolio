@@ -133,7 +133,7 @@ export default defineComponent({
 .project{
 
   .header{
-    width: 80%;
+    width: 70%;
     margin: auto;
 
     .navbar{
@@ -156,7 +156,7 @@ export default defineComponent({
 
       .title{
         font-family: 'Bungee';
-        font-size: 50px;
+        font-size: 40px;
         width: 100%;
       }
 
@@ -194,6 +194,13 @@ export default defineComponent({
       margin-left: 25%;
       margin-right: 25%;
     }
+    .header{
+      .image{
+        .title{
+          font-size: 35px;
+        }
+      }
+    }
   }
 }
 
@@ -222,7 +229,7 @@ export default defineComponent({
     .header{
       .image{
         .title{
-          font-size: 20px;
+          font-size: 15px;
         }
       }
     }

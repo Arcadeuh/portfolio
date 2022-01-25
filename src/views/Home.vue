@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <div class="welcome">
-      Bienvenue
+      Welcome !
     </div>
     <img src="@/assets/pictures/transition_white_red.svg">
     <div class="text-zone backgroundPrimaryColor textBrightColor">
