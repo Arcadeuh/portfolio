@@ -7,7 +7,7 @@
         <div class="Pin">
           <Pin class="boxShadowDarkColor pointer" filename="pp.png" @click="goTo('/')"/>
         </div>
-        <div class="textShadowDarkColor name">Arcadeuh</div>
+        <div class="textShadowDarkColor name">Bastien Fouque</div>
       </div>
 
       <div class="Pin expand"><!--Bouton permettant de déplier la top navbar quand sur petit écran-->
