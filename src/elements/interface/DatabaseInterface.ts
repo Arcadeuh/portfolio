@@ -43,7 +43,7 @@ export abstract class DatabaseInterface{
                     });
                 }
             });
-            setTimeout(resolve, 500);
+            setTimeout(resolve, 1000);
         });
     }
     
@@ -85,7 +85,7 @@ export abstract class DatabaseInterface{
                     });
                 }
             });
-            setTimeout(resolve, 500);
+            setTimeout(resolve, 1000);
         })
     }
 
@@ -113,7 +113,7 @@ export abstract class DatabaseInterface{
                     });
                 }
             });
-            setTimeout(resolve, 500);
+            setTimeout(resolve, 1000);
         })
     }
 
@@ -143,7 +143,7 @@ export abstract class DatabaseInterface{
                     });
                 }
             });
-            setTimeout(resolve, 500);
+            setTimeout(resolve, 1000);
         });
     }
     
@@ -180,7 +180,7 @@ export abstract class DatabaseInterface{
                     });
                 }
             });
-            setTimeout(resolve, 500);
+            setTimeout(resolve, 1000);
         });
     }
 
