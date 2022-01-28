@@ -14,7 +14,11 @@ import { PostDetail } from "./PostDetail";
 */
 export abstract class DatabaseInterface{
     
-    private static database: AirtableBase = new Airtable({apiKey: process.env.AIRTABLE_APPID}).base(process.env.AIRTABLE_TABLEID);
+    private static database: AirtableBase = new Airtable({
+        apiKey: process.env.VUE_APP_AIRTABLE_APPID
+    }).base(
+        process.env.VUE_APP_AIRTABLE_TABLEID
+    );
 
     /*
     * Get introduction item from "Introduction" table
