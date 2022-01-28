@@ -117,7 +117,7 @@ export abstract class DatabaseInterface{
                     });
                 }
             });
-            setTimeout(resolve, 1000);
+            setTimeout(resolve, 1500);
         })
     }
 
