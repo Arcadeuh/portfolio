@@ -14,7 +14,7 @@ import { PostDetail } from "./PostDetail";
 */
 export abstract class DatabaseInterface{
     
-    private static database: AirtableBase = new Airtable({apiKey: 'keyXzoxi702YUSmCf'}).base('applC0kHPlM0YtRDa');
+    private static database: AirtableBase = new Airtable({apiKey: process.env.AIRTABLE_APPID}).base(process.env.AIRTABLE_TABLEID);
 
     /*
     * Get introduction item from "Introduction" table
