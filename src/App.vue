@@ -11,6 +11,10 @@ import { DatabaseInterface } from './elements/interface/DatabaseInterface'
 export default defineComponent({
   components: {
     TopNavbar
+  },
+
+  created(){
+    document.title = "Bastien Fouque - Portfolio"
   }
 })
 </script>
