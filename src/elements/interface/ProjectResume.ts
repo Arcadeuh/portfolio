@@ -12,6 +12,6 @@ export class ProjectResume{
     * OtherUrl
     */
 
-    constructor(public name, public projectId, public category, public description, public imageUrl, public github, public itch, public otherurl){
+    constructor(public name, public projectId, public category, public description, public imageUrl, public github, public itch, public otherUrl){
     }
 }
